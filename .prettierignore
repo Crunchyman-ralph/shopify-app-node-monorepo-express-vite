@@ -1,0 +1,10 @@
+# Add files here to ignore them from prettier formatting
+
+dist/
+coverage/
+node_modules/
+.yarn/
+.pnp.*
+*.log
+*.lock
+.DS_Store

@@ -1,6 +1,6 @@
 on: pull_request_target
 
-name: "Dependabot: auto-merge patch versions"
+name: 'Dependabot: auto-merge patch versions'
 
 jobs:
   approve-dependabot-pr:
@@ -11,12 +11,12 @@ jobs:
         id: dependabot-metadata
         uses: dependabot/fetch-metadata@v1
         with:
-          github-token: "${{ secrets.GITHUB_TOKEN }}"
+          github-token: '${{ secrets.GITHUB_TOKEN }}'
       - name: Approve and merge Dependabot PRs for patch versions
         if: ${{github.event.workflow_run.conclusion == 'success' && steps.dependabot-metadata.outputs.update-type == 'version-update:semver-patch'}}
         uses: actions/github-script@v5
         with:
-          github-token: "${{ secrets.GITHUB_TOKEN }}"
+          github-token: '${{ secrets.GITHUB_TOKEN }}'
           script: |
             await github.rest.pulls.createReview({
               pull_number: context.issue.number,

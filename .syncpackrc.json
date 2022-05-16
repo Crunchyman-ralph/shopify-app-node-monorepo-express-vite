@@ -1,0 +1,18 @@
+{
+  "sortAz": [],
+  "sortFirst": [
+    "name",
+    "description",
+    "version",
+    "private",
+    "packageManager",
+    "license",
+    "author",
+    "workspaces",
+    "main",
+    "scripts",
+    "dependencies",
+    "peerDependencies",
+    "devDependencies"
+  ]
+}

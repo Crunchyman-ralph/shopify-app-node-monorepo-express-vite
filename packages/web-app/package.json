@@ -1,0 +1,13 @@
+{
+  "name": "web-app",
+  "version": "0.0.0",
+  "private": true,
+  "packageManager": "yarn@3.2.0",
+  "license": "UNLICENSED",
+  "main": "./src/index.js",
+  "scripts": {
+    "build": "vite build",
+    "dev": "vite",
+    "preview": "vite preview"
+  }
+}

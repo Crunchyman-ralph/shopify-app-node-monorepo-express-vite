@@ -1,20 +1,24 @@
 {
   "name": "shopify-app-node",
   "private": true,
+  "packageManager": "yarn@3.2.1",
+  "workspaces": [
+    "packages/*"
+  ],
   "scripts": {
-    "build": "npm run build:client",
-    "build:client": "vite build --outDir dist/client",
-    "debug": "node --inspect-brk server/index.js",
-    "dev": "cross-env NODE_ENV=development nodemon server/index.js --watch ./server",
-    "prepare": "husky install",
-    "preserve": "npm run build",
-    "serve": "cross-env NODE_ENV=production node server/index.js",
-    "start": "npm run serve",
-    "test": "vitest --reporter=verbose"
-  },
-  "type": "module",
-  "engines": {
-    "node": ">=16.13.0"
+    "c:format": "prettier -w $INIT_CWD",
+    "c:lint": "eslint $INIT_CWD --cache --cache-location node_modules/.cache/.eslintcache --fix",
+    "c:lint:ci": "eslint $INIT_CWD",
+    "c:pkg:deps": "syncpack syncpack lint-semver-ranges",
+    "c:pkg:deps:fix": "syncpack fix-mismatches",
+    "c:pkg:fix": "yarn c:pkg:deps:fix && yarn c:pkg:format",
+    "c:pkg:format": "syncpack format",
+    "c:test": "sh -c \"if [ $INIT_CWD = $PROJECT_CWD ]; then yarn test ${0:-}; else vitest --dir $INIT_CWD --config $INIT_CWD/vite*.config.ts --run --passWithNoTests ${0:-}; fi\"",
+    "c:test:ci": "cd $INIT_CWD && yarn c:test",
+    "c:test:watch": "cd $INIT_CWD && yarn c:test -w",
+    "c:type": "cd $INIT_CWD && tsc -b",
+    "gen:tsconfig": "cross-env yarn node ${PROJECT_CWD}/scripts/generators/tsconfig.js && prettier -w ${PROJECT_CWD}/packages/**/tsconfig.json",
+    "test": "yarn workspaces foreach -v --exclude 'bloup' run c:test ${0:-}"
   },
   "dependencies": {
     "@apollo/client": "^3.5.10",
@@ -36,11 +40,37 @@
     "vite": "^2.9.8"
   },
   "devDependencies": {
+    "@babel/core": "7.17.9",
+    "@babel/eslint-parser": "7.17.0",
+    "@babel/preset-env": "7.16.11",
+    "@babel/preset-typescript": "7.16.7",
+    "@graphql-eslint/eslint-plugin": "3.10.2",
+    "@types/glob": "7.2.0",
+    "@types/node": "17.0.23",
+    "@typescript-eslint/eslint-plugin": "5.18.0",
+    "@typescript-eslint/parser": "5.18.0",
+    "eslint": "8.13.0",
+    "eslint-config-prettier": "8.5.0",
+    "eslint-import-resolver-typescript": "2.7.1",
+    "eslint-plugin-import": "2.26.0",
+    "eslint-plugin-prettier": "4.0.0",
+    "eslint-plugin-react": "7.29.4",
+    "eslint-plugin-react-hooks": "4.4.0",
+    "eslint-plugin-unicorn": "42.0.0",
+    "glob": "7.2.0",
     "husky": "^7.0.4",
+    "jsdom": "19.0.0",
     "nodemon": "^2.0.15",
     "prettier": "^2.6.2",
     "pretty-quick": "^3.1.3",
     "supertest": "^6.2.2",
+    "syncpack": "6.2.0",
+    "ts-node": "^10.7.0",
+    "tslib": "2.3.1",
+    "typescript": "^4.6.4",
     "vitest": "^0.10.5"
+  },
+  "engines": {
+    "node": ">=16.13.0"
   }
 }
