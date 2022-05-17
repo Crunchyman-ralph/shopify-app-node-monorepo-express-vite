@@ -6,8 +6,8 @@ import cookieParser from 'cookie-parser';
 import { Shopify, ApiVersion } from '@shopify/shopify-api';
 import 'dotenv/config';
 
-import applyAuthMiddleware from './middleware/auth.js';
-import verifyRequest from './middleware/verify-request.js';
+import applyAuthMiddleware from './middleware/auth';
+import verifyRequest from './middleware/verify-request';
 
 const USE_ONLINE_TOKENS = true;
 const TOP_LEVEL_OAUTH_COOKIE = 'shopify_top_level_oauth';

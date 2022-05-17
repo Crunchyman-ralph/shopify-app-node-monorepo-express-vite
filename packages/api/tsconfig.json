@@ -4,9 +4,10 @@
     "rootDir": "./src",
     "outDir": "./node_modules/.cache/dist",
     "tsBuildInfoFile": "./node_modules/.cache/.tsbuildinfo",
-    "noImplicitAny": false
+    "noImplicitAny": false,
+    "esModuleInterop": true
   },
-  "include": ["./src/**/*"],
+  "include": ["src/**/*"],
   "references": [
     {
       "path": "../web-app"

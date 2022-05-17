@@ -3,7 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const tslib_1 = require("tslib");
 /* eslint-disable no-console */
 const shopify_api_1 = require("@shopify/shopify-api");
-const top_level_auth_redirect_js_1 = tslib_1.__importDefault(require("../helpers/top-level-auth-redirect.js"));
+const top_level_auth_redirect_1 = tslib_1.__importDefault(require("../helpers/top-level-auth-redirect"));
 function applyAuthMiddleware(app) {
     app.get('/auth', (req, res) => tslib_1.__awaiter(this, void 0, void 0, function* () {
         if (!req.signedCookies[app.get('top-level-oauth-cookie')]) {
@@ -19,7 +19,7 @@ function applyAuthMiddleware(app) {
             sameSite: 'strict',
         });
         res.set('Content-Type', 'text/html');
-        res.send((0, top_level_auth_redirect_js_1.default)({
+        res.send((0, top_level_auth_redirect_1.default)({
             apiKey: shopify_api_1.Shopify.Context.API_KEY,
             hostName: shopify_api_1.Shopify.Context.HOST_NAME,
             host: req.query.host,

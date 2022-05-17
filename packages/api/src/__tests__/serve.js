@@ -23,7 +23,7 @@ export const serve = async (root, isProd) => {
   }
 
   const { createServer } = await import(
-    path.resolve(root, 'server', 'index.js')
+    path.resolve(root, 'server', 'index.ts')
   );
   process.env.PORT = port.toString();
   return await createServer(root, isProd);

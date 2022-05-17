@@ -4,8 +4,9 @@
     "outDir": "dist",
     "module": "commonjs",
     "types": ["node"],
+    "moduleResolution": "node",
     "emitDecoratorMetadata": true,
-    "target": "es2015"
+    "target": "es6"
   },
   "exclude": ["**/*.spec.ts", "**/*.test.ts", "**/__tests__"],
   "include": ["src/**/*.ts"]

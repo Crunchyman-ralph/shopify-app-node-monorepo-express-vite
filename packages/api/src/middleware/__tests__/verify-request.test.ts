@@ -4,7 +4,7 @@ import request from 'supertest';
 import { describe, expect, SpyInstance, test, vi } from 'vitest';
 import { serve } from '../../__tests__/serve';
 
-import verifyRequest from '../verify-request.js';
+import verifyRequest from '../verify-request';
 
 describe('verify-request middleware', async () => {
   // this is only used to grab app wide constants

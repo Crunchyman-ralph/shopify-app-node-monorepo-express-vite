@@ -9,8 +9,8 @@ const express_1 = tslib_1.__importDefault(require("express"));
 const cookie_parser_1 = tslib_1.__importDefault(require("cookie-parser"));
 const shopify_api_1 = require("@shopify/shopify-api");
 require("dotenv/config");
-const auth_js_1 = tslib_1.__importDefault(require("./middleware/auth.js"));
-const verify_request_js_1 = tslib_1.__importDefault(require("./middleware/verify-request.js"));
+const auth_1 = tslib_1.__importDefault(require("./middleware/auth"));
+const verify_request_1 = tslib_1.__importDefault(require("./middleware/verify-request"));
 const USE_ONLINE_TOKENS = true;
 const TOP_LEVEL_OAUTH_COOKIE = 'shopify_top_level_oauth';
 const PORT = Number.parseInt(process.env.PORT || '8081', 10);
@@ -41,7 +41,7 @@ const createServer = (root = process.cwd(), isProd = process.env.NODE_ENV === 'p
     app.set('active-shopify-shops', ACTIVE_SHOPIFY_SHOPS);
     app.set('use-online-tokens', USE_ONLINE_TOKENS);
     app.use((0, cookie_parser_1.default)(shopify_api_1.Shopify.Context.API_SECRET_KEY));
-    (0, auth_js_1.default)(app);
+    (0, auth_1.default)(app);
     app.post('/webhooks', (req, res) => tslib_1.__awaiter(void 0, void 0, void 0, function* () {
         try {
             yield shopify_api_1.Shopify.Webhooks.Registry.process(req, res);
@@ -54,13 +54,13 @@ const createServer = (root = process.cwd(), isProd = process.env.NODE_ENV === 'p
             }
         }
     }));
-    app.get('/products-count', (0, verify_request_js_1.default)(app), (req, res) => tslib_1.__awaiter(void 0, void 0, void 0, function* () {
+    app.get('/products-count', (0, verify_request_1.default)(app), (req, res) => tslib_1.__awaiter(void 0, void 0, void 0, function* () {
         const session = yield shopify_api_1.Shopify.Utils.loadCurrentSession(req, res, true);
         const { Product } = yield Promise.resolve().then(() => tslib_1.__importStar(require(`@shopify/shopify-api/dist/rest-resources/${shopify_api_1.Shopify.Context.API_VERSION}/index.js`)));
         const countData = yield Product.count({ session });
         res.status(200).send(countData);
     }));
-    app.post('/graphql', (0, verify_request_js_1.default)(app), (req, res) => tslib_1.__awaiter(void 0, void 0, void 0, function* () {
+    app.post('/graphql', (0, verify_request_1.default)(app), (req, res) => tslib_1.__awaiter(void 0, void 0, void 0, function* () {
         try {
             const response = yield shopify_api_1.Shopify.Utils.graphqlProxy(req, res);
             res.status(200).send(response.body);

@@ -1,7 +1,7 @@
 /* eslint-disable no-console */
 import { Shopify } from '@shopify/shopify-api';
 
-import topLevelAuthRedirect from '../helpers/top-level-auth-redirect.js';
+import topLevelAuthRedirect from '../helpers/top-level-auth-redirect';
 
 export default function applyAuthMiddleware(app) {
   app.get('/auth', async (req, res) => {

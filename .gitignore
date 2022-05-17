@@ -18,7 +18,7 @@ logs
 config/tunnel.pid
 
 # compiled output
-/dist
+**/dist
 /tmp
 /out-tsc
 
