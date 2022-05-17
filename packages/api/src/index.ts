@@ -158,5 +158,8 @@ export const createServer = async (
 };
 
 if (!isTest) {
-  createServer().then(({ app }) => app.listen(PORT));
+  createServer().then(({ app }) => {
+    console.log(`Listening on port ${PORT}`);
+    app.listen(PORT);
+  });
 }
