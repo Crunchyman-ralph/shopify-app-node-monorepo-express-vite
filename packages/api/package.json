@@ -14,7 +14,7 @@
     "prepare": "husky install",
     "preserve": "npm run build",
     "serve": "cross-env NODE_ENV=production node dist/src/index.js",
-    "start": "npm run serve",
+    "start": "yarn serve",
     "test": "vitest --reporter=verbose"
   },
   "dependencies": {
