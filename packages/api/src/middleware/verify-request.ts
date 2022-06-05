@@ -31,14 +31,14 @@ export default function verifyRequest(app, { returnHeader = true } = {}) {
         );
         await client.query({ data: TEST_GRAPHQL_QUERY });
         return next();
-      } catch (e) {
+      } catch (error) {
         if (
-          e instanceof Shopify.Errors.HttpResponseError &&
-          e.response.code === 401
+          error instanceof Shopify.Errors.HttpResponseError &&
+          error.response.code === 401
         ) {
           // We only want to catch 401s here, anything else should bubble up
         } else {
-          throw e;
+          throw error;
         }
       }
     }

@@ -1,4 +1,4 @@
-import { useEffect, useState, useCallback } from "react";
+import { useEffect, useState, useCallback } from 'react';
 import {
   Card,
   Heading,
@@ -22,7 +22,7 @@ const PRODUCTS_QUERY = gql`
   }
 `;
 
-export function ProductsCard() {
+export const ProductsCard = () => {
   const [populateProduct, { loading }] = useMutation(PRODUCTS_QUERY);
   const [productCount, setProductCount] = useState(0);
   const [hasResults, setHasResults] = useState(false);
@@ -30,9 +30,9 @@ export function ProductsCard() {
   const app = useAppBridge();
   const fetch = userLoggedInFetch(app);
   const updateProductCount = useCallback(async () => {
-    const { count } = await fetch("/products-count").then((res) => res?.json());
+    const { count } = await fetch('/products-count').then((res) => res?.json());
     setProductCount(count);
-  }, []);
+  }, [fetch]);
 
   useEffect(() => {
     updateProductCount();
@@ -86,14 +86,14 @@ export function ProductsCard() {
       </Card>
     </>
   );
-}
+};
 
-function randomTitle() {
+const randomTitle = () => {
   const adjective = ADJECTIVES[Math.floor(Math.random() * ADJECTIVES.length)];
   const noun = NOUNS[Math.floor(Math.random() * NOUNS.length)];
 
   return `${adjective} ${noun}`;
-}
+};
 
 const ADJECTIVES = [
   'autumn',

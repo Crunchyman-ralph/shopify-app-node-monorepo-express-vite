@@ -1,18 +1,11 @@
 {
   "extends": "./tsconfig.json",
-  "compilerOptions": {
-    "outDir": "dist",
-    "types": ["node"]
-  },
   "exclude": [
-    "**/*.spec.ts",
+    "node_modules",
+    ".next",
+    ".yarn",
+    "SetupTests.ts",
     "**/*.test.ts",
-    "**/*.spec.tsx",
-    "**/*.test.tsx",
-    "**/*.spec.js",
-    "**/*.test.js",
-    "**/*.spec.jsx",
-    "**/*.test.jsx"
-  ],
-  "include": ["**/*.js", "**/*.jsx", "**/*.ts", "**/*.tsx"]
+    "**/*.test.tsx"
+  ]
 }
