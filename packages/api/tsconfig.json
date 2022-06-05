@@ -1,19 +1,20 @@
 {
   "extends": "../../tsconfig.base.json",
   "compilerOptions": {
-    "rootDir": "./src",
     "outDir": "./node_modules/.cache/dist",
     "tsBuildInfoFile": "./node_modules/.cache/.tsbuildinfo",
     "noImplicitAny": false,
-    "esModuleInterop": true
+    "esModuleInterop": true,
+    "module": "commonjs",
+    "paths": {
+      "api/*": ["./*"],
+      "web-app/*": ["../web-app/src/*"]
+    }
   },
   "include": ["src/**/*"],
   "references": [
     {
       "path": "../web-app"
-    },
-    {
-      "path": "./tsconfig.node.json"
     }
   ]
 }
