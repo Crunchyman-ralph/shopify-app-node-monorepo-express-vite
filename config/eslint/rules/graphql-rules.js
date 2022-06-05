@@ -1,8 +1,3 @@
-/**
- * GraphQL rules
- *
- * @see https://github.com/B2o5T/graphql-eslint
- */
 module.exports = {
   graphqlExtends: [
     'plugin:@graphql-eslint/schema-recommended',
@@ -15,10 +10,10 @@ module.exports = {
     '@graphql-eslint/match-document-filename': [
       'error',
       {
-        query: 'PascalCase',
-        mutation: 'PascalCase',
-        subscription: 'PascalCase',
-        fragment: 'PascalCase',
+        query: 'kebab-case',
+        mutation: 'kebab-case',
+        subscription: 'kebab-case',
+        fragment: 'kebab-case',
       },
     ],
     '@graphql-eslint/unique-fragment-name': 'error',

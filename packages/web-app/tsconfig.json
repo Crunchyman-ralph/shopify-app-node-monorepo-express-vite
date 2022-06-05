@@ -1,25 +1,19 @@
 {
   "extends": "../../tsconfig.base.json",
   "compilerOptions": {
+    "rootDir": ".",
     "outDir": "./node_modules/.cache/dist",
     "tsBuildInfoFile": "./node_modules/.cache/.tsbuildinfo",
-    "paths": {
-      "web-app/*": [
-        "./src/*"
-      ]
-    },
-    "rootDir": "./src"
+    "target": "ESNext",
+    "useDefineForClassFields": true,
+    "lib": ["DOM", "DOM.Iterable", "ESNext"],
+    "skipLibCheck": true,
+    "esModuleInterop": true,
+    "module": "ESNext",
+    "noEmit": false,
+    "resolveJsonModule": true,
+    "types": ["vite/client", "node"]
   },
-  "include": [
-    "./src/**/*.ts",
-    "./src/**/*.tsx",
-    "./src/**/*.js",
-    "./src/**/*.json",
-    "./**/*.ts",
-    "./**/*.tsx",
-    "./**/*.js",
-    "./**/*.json",
-    "*.json"
-  ],
+  "include": ["src/**/*"],
   "references": []
 }

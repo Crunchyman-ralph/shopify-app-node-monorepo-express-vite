@@ -18,22 +18,25 @@ import { HomePage } from './components/HomePage';
 import React from 'react';
 import { ClientApplication } from '@shopify/app-bridge';
 
-export const App = () => (
-  <PolarisProvider i18n={translations}>
-    <AppBridgeProvider
-      config={{
-        apiKey: process.env.SHOPIFY_API_KEY!,
-        // eslint-disable-next-line no-restricted-globals
-        host: new URL(location as unknown as string).searchParams.get('host')!,
-        forceRedirect: true,
-      }}
-    >
-      <MyProvider>
-        <HomePage />
-      </MyProvider>
-    </AppBridgeProvider>
-  </PolarisProvider>
-);
+export function App() {
+  return (
+    <PolarisProvider i18n={translations}>
+      <AppBridgeProvider
+        config={{
+          apiKey: process.env.SHOPIFY_API_KEY!,
+          host: new URL(location as unknown as string).searchParams.get(
+            'host'
+          )!,
+          forceRedirect: true,
+        }}
+      >
+        <MyProvider>
+          <HomePage />
+        </MyProvider>
+      </AppBridgeProvider>
+    </PolarisProvider>
+  );
+}
 
 const MyProvider: React.FC = ({ children }) => {
   const app = useAppBridge();

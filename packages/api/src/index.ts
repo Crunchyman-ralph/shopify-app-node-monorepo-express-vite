@@ -1,3 +1,5 @@
+/* eslint-disable no-console */
+// @ts-check
 import path from 'node:path';
 import express from 'express';
 import cookieParser from 'cookie-parser';
@@ -29,7 +31,7 @@ Shopify.Context.initialize({
 const ACTIVE_SHOPIFY_SHOPS: { [key in string]: unknown } = {};
 Shopify.Webhooks.Registry.addHandler('APP_UNINSTALLED', {
   path: '/webhooks',
-  webhookHandler: async (topic, shop) => {
+  webhookHandler: async (topic, shop, body) => {
     delete ACTIVE_SHOPIFY_SHOPS[shop];
   },
 });
@@ -51,10 +53,8 @@ export const createServer = async (
   app.post('/webhooks', async (req, res) => {
     try {
       await Shopify.Webhooks.Registry.process(req, res);
-      // eslint-disable-next-line no-console
       console.log(`Webhook processed, returned status code 200`);
     } catch (error: any) {
-      // eslint-disable-next-line no-console
       console.log(`Failed to process webhook: ${error}`);
       if (!res.headersSent) {
         res.status(500).send(error.message);
@@ -159,7 +159,6 @@ export const createServer = async (
 
 if (!isTest) {
   createServer().then(({ app }) => {
-    // eslint-disable-next-line no-console
     console.log(`Listening on port ${PORT}`);
     app.listen(PORT);
   });

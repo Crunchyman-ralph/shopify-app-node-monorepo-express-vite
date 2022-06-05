@@ -2,7 +2,6 @@
   "compileOnSave": false,
   "compilerOptions": {
     "composite": true,
-    "jsx": "react-jsx",
     "allowJs": true,
     "allowSyntheticDefaultImports": true,
     "forceConsistentCasingInFileNames": true,
@@ -16,18 +15,14 @@
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "importHelpers": true,
-    "target": "es2015",
-    "module": "esnext",
-    "lib": ["dom", "es2017"],
+    "target": "es6",
+    "module": "commonjs",
+    "lib": ["dom", "DOM.Iterable", "ESNext"],
+    "resolveJsonModule": false,
     "skipLibCheck": true,
+    "jsx": "react-jsx",
     "skipDefaultLibCheck": true,
-    "resolveJsonModule": true,
-
-    "isolatedModules": true,
-    "incremental": true,
-    "declarationMap": true,
-
     "types": ["vitest/globals", "node"]
   },
-  "exclude": ["**/.yarn", "**/node_modules", "**/dist", "**/jest.*.js"]
+  "exclude": ["**/.yarn", "**/node_modules", "**/dist"]
 }

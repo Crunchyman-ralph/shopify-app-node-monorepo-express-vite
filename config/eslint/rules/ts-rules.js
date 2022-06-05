@@ -13,7 +13,10 @@ module.exports = {
     '@typescript-eslint/consistent-type-definitions': ['error', 'type'],
     '@typescript-eslint/method-signature-style': ['error'],
     '@typescript-eslint/no-confusing-non-null-assertion': ['error'],
-    '@typescript-eslint/no-extraneous-class': ['error'],
+    '@typescript-eslint/no-extraneous-class': [
+      'error',
+      { allowWithDecorator: true },
+    ],
     '@typescript-eslint/no-invalid-void-type': ['error'],
     '@typescript-eslint/no-meaningless-void-operator': ['error'],
     '@typescript-eslint/no-non-null-asserted-nullish-coalescing': ['error'],
@@ -37,7 +40,7 @@ module.exports = {
 
     // Non-null assertion is useful when we know value being non-null (or should be)
     // Some example: Array.find() use, or graphql return data (data!.byPath!.prop!)
-    // A null value is often easy to debug since it generally throws an error
+    // A null value is often easy to debug since it generally throw an error
     '@typescript-eslint/no-non-null-assertion': 'off',
 
     'import/no-relative-packages': 'error',
@@ -45,8 +48,5 @@ module.exports = {
       'error',
       { allowCallExpression: false },
     ],
-
-    // This rule is not compatible with Next.js's <Link /> components
-    'jsx-a11y/anchor-is-valid': 'off',
   },
 };
