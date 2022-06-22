@@ -1,0 +1,4 @@
+type="frontend"
+
+[commands]
+dev = "yarn dev"
