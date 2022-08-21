@@ -186,7 +186,7 @@ const restrictedGlobalList = [
 module.exports = {
   jsRules: {
     'array-callback-return': ['error'],
-    'no-await-in-loop': ['warn'],
+    'no-await-in-loop': ['off'],
     'no-duplicate-imports': ['error'],
     'no-self-compare': ['error'],
     'no-template-curly-in-string': ['error'],

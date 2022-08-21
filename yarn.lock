@@ -86,7 +86,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@babel/core@npm:7.18.10, @babel/core@npm:^7.11.6, @babel/core@npm:^7.12.3, @babel/core@npm:^7.18.10":
+"@babel/core@npm:7.18.10, @babel/core@npm:^7.11.6, @babel/core@npm:^7.12.3, @babel/core@npm:^7.16.12, @babel/core@npm:^7.18.10":
   version: 7.18.10
   resolution: "@babel/core@npm:7.18.10"
   dependencies:
@@ -1115,7 +1115,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@babel/plugin-transform-react-jsx-development@npm:^7.18.6":
+"@babel/plugin-transform-react-jsx-development@npm:^7.16.7, @babel/plugin-transform-react-jsx-development@npm:^7.18.6":
   version: 7.18.6
   resolution: "@babel/plugin-transform-react-jsx-development@npm:7.18.6"
   dependencies:
@@ -1126,7 +1126,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@babel/plugin-transform-react-jsx-self@npm:^7.18.6":
+"@babel/plugin-transform-react-jsx-self@npm:^7.16.7, @babel/plugin-transform-react-jsx-self@npm:^7.18.6":
   version: 7.18.6
   resolution: "@babel/plugin-transform-react-jsx-self@npm:7.18.6"
   dependencies:
@@ -1137,7 +1137,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@babel/plugin-transform-react-jsx-source@npm:^7.18.6":
+"@babel/plugin-transform-react-jsx-source@npm:^7.16.7, @babel/plugin-transform-react-jsx-source@npm:^7.18.6":
   version: 7.18.6
   resolution: "@babel/plugin-transform-react-jsx-source@npm:7.18.6"
   dependencies:
@@ -1148,7 +1148,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@babel/plugin-transform-react-jsx@npm:^7.18.10, @babel/plugin-transform-react-jsx@npm:^7.18.6":
+"@babel/plugin-transform-react-jsx@npm:^7.16.7, @babel/plugin-transform-react-jsx@npm:^7.18.10, @babel/plugin-transform-react-jsx@npm:^7.18.6":
   version: 7.18.10
   resolution: "@babel/plugin-transform-react-jsx@npm:7.18.10"
   dependencies:
@@ -2524,6 +2524,16 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@rollup/pluginutils@npm:^4.1.2":
+  version: 4.2.1
+  resolution: "@rollup/pluginutils@npm:4.2.1"
+  dependencies:
+    estree-walker: ^2.0.1
+    picomatch: ^2.2.2
+  checksum: 6bc41f22b1a0f1efec3043899e4d3b6b1497b3dea4d94292d8f83b4cf07a1073ecbaedd562a22d11913ff7659f459677b01b09e9598a98936e746780ecc93a12
+  languageName: node
+  linkType: hard
+
 "@shopify/app-bridge-react@npm:3.2.2":
   version: 3.2.2
   resolution: "@shopify/app-bridge-react@npm:3.2.2"
@@ -3501,6 +3511,22 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@vitejs/plugin-react@npm:1.2.0":
+  version: 1.2.0
+  resolution: "@vitejs/plugin-react@npm:1.2.0"
+  dependencies:
+    "@babel/core": ^7.16.12
+    "@babel/plugin-transform-react-jsx": ^7.16.7
+    "@babel/plugin-transform-react-jsx-development": ^7.16.7
+    "@babel/plugin-transform-react-jsx-self": ^7.16.7
+    "@babel/plugin-transform-react-jsx-source": ^7.16.7
+    "@rollup/pluginutils": ^4.1.2
+    react-refresh: ^0.11.0
+    resolve: ^1.22.0
+  checksum: d838018f591ab1db96d5887eaeef8cfb9214842e7ac00cb196b815ffa453be150c218990f254c5f1dc206903b5c43f8c9c6a60208d075ea268307b6488de3a0d
+  languageName: node
+  linkType: hard
+
 "@vitejs/plugin-react@npm:2.0.1":
   version: 2.0.1
   resolution: "@vitejs/plugin-react@npm:2.0.1"
@@ -4223,10 +4249,6 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "backend@workspace:web/backend"
   dependencies:
-    "@apollo/client": 3.6.9
-    "@shopify/app-bridge": 3.2.2
-    "@shopify/app-bridge-react": 3.2.2
-    "@shopify/app-bridge-utils": 3.2.2
     "@shopify/shopify-api": 5.0.1
     "@types/compression": 1.7.2
     "@types/cookie-parser": 1.4.3
@@ -4238,19 +4260,15 @@ __metadata:
     cross-env: 7.0.3
     dotenv: 16.0.1
     express: 4.18.1
-    frontend: 0.0.0
-    graphql: 16.6.0
     husky: 8.0.1
+    jsonwebtoken: 8.5.1
     nodemon: 2.0.19
     prettier: 2.7.1
     pretty-quick: 3.1.3
-    react: 18.2.0
-    react-dom: 18.2.0
     serve-static: 1.15.0
     supertest: 6.2.4
     ts-node: 10.9.1
     typescript: 4.7.4
-    vite: 3.0.9
     vitest: 0.22.1
   languageName: unknown
   linkType: soft
@@ -6110,7 +6128,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"esbuild@npm:^0.14.47":
+"esbuild@npm:^0.14.27, esbuild@npm:^0.14.47":
   version: 0.14.54
   resolution: "esbuild@npm:0.14.54"
   dependencies:
@@ -6536,6 +6554,13 @@ __metadata:
   version: 5.3.0
   resolution: "estraverse@npm:5.3.0"
   checksum: 072780882dc8416ad144f8fe199628d2b3e7bbc9989d9ed43795d2c90309a2047e6bc5979d7e2322a341163d22cfad9e21f4110597fe487519697389497e4e2b
+  languageName: node
+  linkType: hard
+
+"estree-walker@npm:^2.0.1":
+  version: 2.0.2
+  resolution: "estree-walker@npm:2.0.2"
+  checksum: 6151e6f9828abe2259e57f5fd3761335bb0d2ebd76dc1a01048ccee22fabcfef3c0859300f6d83ff0d1927849368775ec5a6d265dde2f6de5a1be1721cd94efc
   languageName: node
   linkType: hard
 
@@ -7133,7 +7158,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"frontend@0.0.0, frontend@workspace:web/frontend":
+"frontend@workspace:web/frontend":
   version: 0.0.0-use.local
   resolution: "frontend@workspace:web/frontend"
   dependencies:
@@ -7141,7 +7166,7 @@ __metadata:
     "@shopify/app-bridge-react": 3.2.2
     "@shopify/app-bridge-utils": 3.2.2
     "@shopify/polaris": 9.23.1
-    "@vitejs/plugin-react": 2.0.1
+    "@vitejs/plugin-react": 1.2.0
     history: 5.3.0
     jsdom: 20.0.0
     prettier: 2.7.1
@@ -7149,8 +7174,8 @@ __metadata:
     react-dom: 18.2.0
     react-query: 3.39.2
     react-router-dom: 6.3.0
-    vi-fetch: 0.6.1
-    vite: 3.0.9
+    vi-fetch: 0.8.0
+    vite: 2.9.15
   languageName: unknown
   linkType: soft
 
@@ -9137,7 +9162,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"jsonwebtoken@npm:^8.5.1":
+"jsonwebtoken@npm:8.5.1, jsonwebtoken@npm:^8.5.1":
   version: 8.5.1
   resolution: "jsonwebtoken@npm:8.5.1"
   dependencies:
@@ -11062,7 +11087,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"picomatch@npm:^2.0.4, picomatch@npm:^2.2.1, picomatch@npm:^2.2.3, picomatch@npm:^2.3.1":
+"picomatch@npm:^2.0.4, picomatch@npm:^2.2.1, picomatch@npm:^2.2.2, picomatch@npm:^2.2.3, picomatch@npm:^2.3.1":
   version: 2.3.1
   resolution: "picomatch@npm:2.3.1"
   checksum: 050c865ce81119c4822c45d3c84f1ced46f93a0126febae20737bd05ca20589c564d6e9226977df859ed5e03dc73f02584a2b0faad36e896936238238b0446cf
@@ -11224,7 +11249,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"postcss@npm:^8.3.0, postcss@npm:^8.4.16":
+"postcss@npm:^8.3.0, postcss@npm:^8.4.13, postcss@npm:^8.4.16":
   version: 8.4.16
   resolution: "postcss@npm:8.4.16"
   dependencies:
@@ -11680,6 +11705,13 @@ __metadata:
     react-native:
       optional: true
   checksum: 83b199e66af28ab67ec4d22e51da42f02447186623db926b75d27a1c09a3383da6ddc9e5b83d82578fac7abdba7e6f265aecbffdb91db61981950d3d59409346
+  languageName: node
+  linkType: hard
+
+"react-refresh@npm:^0.11.0":
+  version: 0.11.0
+  resolution: "react-refresh@npm:0.11.0"
+  checksum: 112178a05b1e0ffeaf5d9fb4e56b4410a34a73adeb04dbf13abdc50d9ac9df2ada83e81485156cca0b3fa296aa3612751b3d6cd13be4464642a43679b819cbc7
   languageName: node
   linkType: hard
 
@@ -12168,7 +12200,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"rollup@npm:>=2.75.6 <2.77.0 || ~2.77.0":
+"rollup@npm:>=2.59.0 <2.78.0, rollup@npm:>=2.75.6 <2.77.0 || ~2.77.0":
   version: 2.77.3
   resolution: "rollup@npm:2.77.3"
   dependencies:
@@ -13310,14 +13342,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"tinyspy@npm:^0.3.0":
-  version: 0.3.3
-  resolution: "tinyspy@npm:0.3.3"
-  checksum: 1beb8f04c100d9ac769ff85266594f07d6f08f41cfb95c4bef9da3e59988b42e8d4e66c2ec455d3ecad80027347920e87d7a7098c5a2a28637f9fee25e11a8f1
-  languageName: node
-  linkType: hard
-
-"tinyspy@npm:^1.0.2":
+"tinyspy@npm:^1.0.0, tinyspy@npm:^1.0.2":
   version: 1.0.2
   resolution: "tinyspy@npm:1.0.2"
   checksum: 32096121aa8d52bb625ad62c9314b3e4daba4ab9ac428217b12b1e1dfe9860e3c94d54a7affa279cc70dc6f10d88c6ba46b51de68896b318a06d02f05e87dcc3
@@ -13890,13 +13915,42 @@ __metadata:
   languageName: node
   linkType: hard
 
-"vi-fetch@npm:0.6.1":
-  version: 0.6.1
-  resolution: "vi-fetch@npm:0.6.1"
+"vi-fetch@npm:0.8.0":
+  version: 0.8.0
+  resolution: "vi-fetch@npm:0.8.0"
   dependencies:
     query-string: ^7.1.1
-    tinyspy: ^0.3.0
-  checksum: eeaed88157afa9a08d4cadcbff5c3cd618b04b7a87a2d3da4b2eb448764de7780fa85bc3fe781be33bedd50128dab4243a3ed1e0f4b4fe28a1cb0fba170588d4
+    tinyspy: ^1.0.0
+  checksum: 4c0d32ba80fcaa712cb8e90bc508acdb2d4c9b4b5d4d0b67f83f948de4e81ba9ce317723d81e4e5340cc40b0388819c5976f7bb774391217fccfece7966673a9
+  languageName: node
+  linkType: hard
+
+"vite@npm:2.9.15":
+  version: 2.9.15
+  resolution: "vite@npm:2.9.15"
+  dependencies:
+    esbuild: ^0.14.27
+    fsevents: ~2.3.2
+    postcss: ^8.4.13
+    resolve: ^1.22.0
+    rollup: ">=2.59.0 <2.78.0"
+  peerDependencies:
+    less: "*"
+    sass: "*"
+    stylus: "*"
+  dependenciesMeta:
+    fsevents:
+      optional: true
+  peerDependenciesMeta:
+    less:
+      optional: true
+    sass:
+      optional: true
+    stylus:
+      optional: true
+  bin:
+    vite: bin/vite.js
+  checksum: 5edf8afc132a598f82a1339aa503514a0e86f6264babe94531b9000d801f157c9a32ae022542404678acca43ee260ade04c4763c4b7b8d381a6b50511b4a1447
   languageName: node
   linkType: hard
 

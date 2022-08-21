@@ -1,10 +1,5 @@
+//@ts-nocheck
 import { Routes as ReactRouterRoutes, Route } from 'react-router-dom';
-
-export type Pages = {
-  [key in string]: {
-    default?: () => React.ReactElement;
-  };
-};
 
 /**
  * File-based routing.
@@ -20,23 +15,23 @@ export type Pages = {
  *
  * @return {Routes} `<Routes/>` from React Router, with a `<Route/>` for each file in `pages`
  */
-export default function Routes({ pages }: { pages: Pages }) {
+export default function Routes({ pages }) {
   const routes = useRoutes(pages);
   const routeComponents = routes.map(({ path, component: Component }) => (
-    <Route key={path} path={path} element={Component && <Component />} />
+    <Route key={path} path={path} element={<Component />} />
   ));
 
-  const NotFound = routes.find(({ path }) => path === '/notFound')?.component;
+  const NotFound = routes.find(({ path }) => path === '/notFound').component;
 
   return (
     <ReactRouterRoutes>
       {routeComponents}
-      {NotFound && <Route path="*" element={<NotFound />} />}
+      <Route path="*" element={<NotFound />} />
     </ReactRouterRoutes>
   );
 }
 
-const useRoutes = (pages: Pages) => {
+function useRoutes(pages) {
   const routes = Object.keys(pages)
     .map((key) => {
       let path = key
@@ -54,10 +49,10 @@ const useRoutes = (pages: Pages) => {
         /**
          * Convert /[handle].jsx and /[...handle].jsx to /:handle.jsx for react-router-dom
          */
-        .replace(/\[(?:\.{3})?(\w+?)]/g, (_match, param) => `:${param}`);
+        .replace(/\[(?:[.]{3})?(\w+?)\]/g, (_match, param) => `:${param}`);
 
       if (path.endsWith('/') && path !== '/') {
-        path = path.slice(0, Math.max(0, path.length - 1));
+        path = path.substring(0, path.length - 1);
       }
 
       if (!pages[key].default) {
@@ -72,4 +67,4 @@ const useRoutes = (pages: Pages) => {
     .filter((route) => route.component);
 
   return routes;
-};
+}

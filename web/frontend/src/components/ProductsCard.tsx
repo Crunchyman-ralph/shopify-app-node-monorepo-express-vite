@@ -21,7 +21,7 @@ export const ProductsCard = () => {
     refetch: refetchProductCount,
     isLoading: isLoadingCount,
     isRefetching: isRefetchingCount,
-  } = useAppQuery({
+  } = useAppQuery<any>({
     url: '/api/products/count',
     reactQueryOptions: {
       onSuccess: () => {

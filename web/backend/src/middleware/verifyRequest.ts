@@ -1,5 +1,9 @@
 import { Shopify } from '@shopify/shopify-api';
-import { Express } from 'express';
+import ensureBilling, { ShopifyBillingError } from '../helpers/ensureBilling';
+import { Express, NextFunction, Response, Request } from 'express';
+
+import returnTopLevelRedirection from '../helpers/returnTopLevelRedirection';
+import { BillingOptions } from './auth';
 
 const TEST_GRAPHQL_QUERY = `
 {
@@ -8,76 +12,92 @@ const TEST_GRAPHQL_QUERY = `
   }
 }`;
 
+type VerifyRequestOptions = {
+  billing: BillingOptions;
+  returnHeader: boolean;
+};
+
+const defaultOptions = {
+  billing: {
+    required: false,
+  },
+};
+
 export default function verifyRequest(
   app: Express,
-  { returnHeader = true } = {}
+  {
+    billing = { required: false },
+  }: Partial<VerifyRequestOptions> = defaultOptions
 ) {
-  return async (req, res, next) => {
+  return async (req: Request, res: Response, next: NextFunction) => {
     const session = await Shopify.Utils.loadCurrentSession(
       req,
       res,
       app.get('use-online-tokens')
     );
 
-    let shop = req.query.shop;
-
+    let shop = Shopify.Utils.sanitizeShop(req.query.shop as string);
     if (session && shop && session.shop !== shop) {
       // The current request is for a different shop. Redirect gracefully.
-      return res.redirect(`/auth?shop=${shop}`);
+      return res.redirect(`/api/auth?shop=${encodeURIComponent(shop)}`);
     }
 
     if (session?.isActive()) {
       try {
-        // make a request to make sure oauth has succeeded, retry otherwise
-        const client = new Shopify.Clients.Graphql(
-          session.shop,
-          session.accessToken
-        );
-        await client.query({ data: TEST_GRAPHQL_QUERY });
+        if (billing.required) {
+          // The request to check billing status serves to validate that the access token is still valid.
+          const [hasPayment, confirmationUrl] = await ensureBilling(
+            session,
+            billing
+          );
+
+          if (!hasPayment) {
+            returnTopLevelRedirection(req, res, confirmationUrl);
+            return;
+          }
+        } else {
+          // Make a request to ensure the access token is still valid. Otherwise, re-authenticate the user.
+          const client = new Shopify.Clients.Graphql(
+            session.shop,
+            session.accessToken
+          );
+          await client.query({ data: TEST_GRAPHQL_QUERY });
+        }
         return next();
-      } catch (error) {
+      } catch (error: any) {
         if (
           error instanceof Shopify.Errors.HttpResponseError &&
           error.response.code === 401
         ) {
-          // We only want to catch 401s here, anything else should bubble up
+          // Re-authenticate if we get a 401 response
+        } else if (error instanceof ShopifyBillingError) {
+          console.error(error.message, error.errorData[0]);
+          res.status(500).end();
+          return;
         } else {
           throw error;
         }
       }
     }
 
-    if (returnHeader) {
+    const bearerPresent = req.headers.authorization?.match(/Bearer (.*)/);
+    if (bearerPresent) {
       if (!shop) {
         if (session) {
           shop = session.shop;
         } else if (Shopify.Context.IS_EMBEDDED_APP) {
-          const authHeader = req.headers.authorization;
-          const matches = authHeader?.match(/Bearer (.*)/);
-          if (matches) {
-            const payload = Shopify.Utils.decodeSessionToken(matches[1]);
+          if (bearerPresent) {
+            const payload = Shopify.Utils.decodeSessionToken(bearerPresent[1]);
             shop = payload.dest.replace('https://', '');
           }
         }
       }
-
-      if (!shop || shop === '') {
-        return res
-          .status(400)
-          .send(
-            `Could not find a shop to authenticate with. Make sure you are making your XHR request with App Bridge's authenticatedFetch method.`
-          );
-      }
-
-      res.status(403);
-      res.header('X-Shopify-API-Request-Failure-Reauthorize', '1');
-      res.header(
-        'X-Shopify-API-Request-Failure-Reauthorize-Url',
-        `/auth?shop=${shop}`
-      );
-      res.end();
-    } else {
-      res.redirect(`/auth?shop=${shop}`);
     }
+
+    returnTopLevelRedirection(
+      req,
+      res,
+      `/api/auth?shop=${encodeURIComponent(shop!)}`
+    );
   };
 }

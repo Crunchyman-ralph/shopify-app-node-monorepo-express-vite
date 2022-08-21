@@ -1,22 +1,18 @@
 {
   "extends": "../../tsconfig.base.json",
   "compilerOptions": {
+    "rootDir": "./src",
     "outDir": "./node_modules/.cache/dist",
     "tsBuildInfoFile": "./node_modules/.cache/.tsbuildinfo",
     "paths": {
       "@axe/common/*": ["./src/*"]
-    },
-    "rootDir": "./src"
+    }
   },
   "include": [
     "./src/**/*.ts",
     "./src/**/*.tsx",
     "./src/**/*.js",
-    "./src/**/*.json",
-    "./**/*.ts",
-    "./**/*.tsx",
-    "./**/*.js",
-    "./**/*.json"
+    "./src/**/*.json"
   ],
   "references": []
 }

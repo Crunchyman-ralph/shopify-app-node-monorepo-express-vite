@@ -8,7 +8,6 @@ export default function topLevelAuthRedirect({
   shop: string;
 }) {
   const serializedQuery = new URLSearchParams({ shop }).toString();
-  console.log('shop: ', shop);
 
   return `<!DOCTYPE html>
 <html>
@@ -27,7 +26,7 @@ export default function topLevelAuthRedirect({
 
           const app = createApp({
             apiKey: '${apiKey}',
-            shopOrigin: ${JSON.stringify(shop).replaceAll(['<', '>'], '')},
+            shopOrigin: ${JSON.stringify(shop).replaceAll(/[<>]/g, '')},
           });
 
           const redirect = Redirect.create(app);

@@ -25,7 +25,7 @@ const AppBridgeLink = ({
   const navigate = useNavigate();
   const handleClick = useCallback(() => {
     navigate(url);
-  }, [navigate, url]);
+  }, [url]);
 
   const IS_EXTERNAL_LINK_REGEX = /^(?:[a-z][\d+.a-z-]*:|\/\/)/;
 

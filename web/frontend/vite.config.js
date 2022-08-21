@@ -41,6 +41,8 @@ if (host === 'localhost') {
   };
 }
 
+console.log('dirname: ', dirname(fileURLToPath(import.meta.url)));
+
 export default defineConfig({
   root: dirname(fileURLToPath(import.meta.url)),
   plugins: [react()],

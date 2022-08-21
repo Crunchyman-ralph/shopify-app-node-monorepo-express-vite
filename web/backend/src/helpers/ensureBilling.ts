@@ -1,5 +1,6 @@
 import { Shopify } from '@shopify/shopify-api';
 import { GraphqlClient } from '@shopify/shopify-api/dist/clients/graphql';
+import { BillingOptions } from 'backend/src/middleware/auth';
 
 export const BillingInterval = {
   OneTime: 'ONE_TIME',
@@ -57,9 +58,9 @@ const hasActivePayment = async (
   const client = new Shopify.Clients.Graphql(session.shop, session.accessToken);
 
   if (isRecurring(interval)) {
-    const currentInstallations = await client.query({
+    const currentInstallations = (await client.query({
       data: RECURRING_PURCHASES_QUERY,
-    });
+    })) as any;
     const subscriptions =
       currentInstallations.body.data.currentAppInstallation.activeSubscriptions;
 
@@ -75,12 +76,12 @@ const hasActivePayment = async (
     let purchases;
     let endCursor = null;
     do {
-      const currentInstallations = await client.query({
+      const currentInstallations = (await client.query({
         data: {
           query: ONE_TIME_PURCHASES_QUERY,
           variables: { endCursor },
         },
-      });
+      })) as any;
       purchases =
         currentInstallations.body.data.currentAppInstallation.oneTimePurchases;
 
@@ -118,12 +119,12 @@ const requestPayment = async (
 
   let data;
   if (isRecurring(interval)) {
-    const mutationResponse = await requestRecurringPayment(client, returnUrl, {
+    const mutationResponse = (await requestRecurringPayment(client, returnUrl, {
       chargeName,
       amount,
       currencyCode,
       interval,
-    });
+    })) as any;
     data = mutationResponse.body.data.appSubscriptionCreate;
   } else {
     const mutationResponse = await requestSinglePayment(client, returnUrl, {
@@ -134,7 +135,7 @@ const requestPayment = async (
     data = mutationResponse.body.data.appPurchaseOneTimeCreate;
   }
 
-  if (data.userErrors.length) {
+  if (data.userErrors.length > 0) {
     throw new ShopifyBillingError(
       'Error while billing the store',
       data.userErrors
@@ -154,7 +155,7 @@ const requestRecurringPayment = async (
     interval,
   }: { chargeName: any; amount: any; currencyCode: any; interval: any }
 ) => {
-  const mutationResponse = await client.query({
+  const mutationResponse = (await client.query({
     data: {
       query: RECURRING_PURCHASE_MUTATION,
       variables: {
@@ -173,9 +174,9 @@ const requestRecurringPayment = async (
         test: !isProd,
       },
     },
-  });
+  })) as any;
 
-  if (mutationResponse.body.errors && mutationResponse.body.errors.length) {
+  if (mutationResponse.body.errors && mutationResponse.body.errors.length > 0) {
     throw new ShopifyBillingError(
       'Error while billing the store',
       mutationResponse.body.errors
@@ -186,11 +187,11 @@ const requestRecurringPayment = async (
 };
 
 const requestSinglePayment = async (
-  client,
-  returnUrl,
-  { chargeName, amount, currencyCode }
+  client: GraphqlClient,
+  returnUrl: string,
+  { chargeName, amount, currencyCode }: BillingOptions
 ) => {
-  const mutationResponse = await client.query({
+  const mutationResponse = (await client.query({
     data: {
       query: ONE_TIME_PURCHASE_MUTATION,
       variables: {
@@ -200,9 +201,9 @@ const requestSinglePayment = async (
         test: process.env.NODE_ENV !== 'production',
       },
     },
-  });
+  })) as any;
 
-  if (mutationResponse.body.errors && mutationResponse.body.errors.length) {
+  if (mutationResponse.body.errors?.length) {
     throw new ShopifyBillingError(
       'Error while billing the store',
       mutationResponse.body.errors
@@ -212,18 +213,25 @@ const requestSinglePayment = async (
   return mutationResponse;
 };
 
-const isRecurring = (interval) => {
-  return RECURRING_INTERVALS.has(interval);
-};
+const isRecurring = (interval: string) => RECURRING_INTERVALS.has(interval);
 
-export const ShopifyBillingError = (message: string, errorData: any) => {
-  this.name = 'ShopifyBillingError';
-  this.stack = new Error('Shopify Billing Error').stack;
+// eslint-disable-next-line func-style
+export class ShopifyBillingError {
+  name;
+  stack;
+  message;
+  errorData;
+  prototype;
 
-  this.message = message;
-  this.errorData = errorData;
-};
-ShopifyBillingError.prototype = new Error();
+  constructor(message: string, errorData: any) {
+    this.name = 'ShopifyBillingError';
+    this.stack = new Error('Shopify Billing Error').stack;
+
+    this.message = message;
+    this.errorData = errorData;
+    this.prototype = new Error('Shopify Billing Error');
+  }
+}
 
 const RECURRING_PURCHASES_QUERY = `
   query appSubscription {
