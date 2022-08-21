@@ -15,7 +15,7 @@ We are using yarn workspaces to segment our projects into multiple packages.
 Packages found in `packages`:
 
 - api
-- web-app
+- frontend
 - _shopify network (coming soon)_
 
 ## Running the app

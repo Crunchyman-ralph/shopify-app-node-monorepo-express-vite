@@ -1,0 +1,27 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "plugins": [
+      {
+        "name": "typescript-plugin-css-modules",
+        "options": {
+          "customRenderer": "../../css-custom-renderer.js"
+        }
+      }
+    ],
+    "outDir": "./node_modules/.cache/dist",
+    "tsBuildInfoFile": "./node_modules/.cache/.tsbuildinfo",
+    "types": ["vite/client"],
+    "paths": {
+      "frontend/*": ["./*"]
+    }
+  },
+  "include": [
+    "./**/*.ts",
+    "./**/*.tsx",
+    "./**/*.js",
+    "./**/*.json",
+    "src/**/*"
+  ],
+  "references": []
+}

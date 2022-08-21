@@ -1,0 +1,22 @@
+{
+  "name": "@axe/common",
+  "version": "0.1.0",
+  "private": true,
+  "packageManager": "yarn@3.2.0",
+  "license": "UNLICENSED",
+  "main": "src/index.ts",
+  "peerDependencies": {
+    "dotenv": "16.0.1"
+  },
+  "devDependencies": {
+    "@types/jest": "28.1.7",
+    "@types/node": "18.7.8",
+    "dotenv": "16.0.1",
+    "jest": "28.1.3",
+    "tslib": "2.4.0"
+  },
+  "exports": {
+    ".": "./src/index.ts",
+    "./*": "./src/*"
+  }
+}
