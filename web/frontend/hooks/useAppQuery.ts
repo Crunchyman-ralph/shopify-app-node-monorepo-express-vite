@@ -29,13 +29,12 @@ export const useAppQuery = <T = unknown>({
   reactQueryOptions,
 }: UseAppQueryType<T>) => {
   const authenticatedFetch = useAuthenticatedFetch();
-  const fetch = useMemo(
-    () => async () => {
+  const fetch = useMemo(() => {
+    return async () => {
       const response = await authenticatedFetch(url, fetchInit);
       return response.json();
-    },
-    [fetchInit, url]
-  );
+    };
+  }, [url, JSON.stringify(fetchInit)]);
 
   return useQuery(url, fetch, {
     ...reactQueryOptions,

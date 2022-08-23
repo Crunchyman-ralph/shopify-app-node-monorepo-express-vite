@@ -1,6 +1,7 @@
 import { defineConfig } from 'vite';
 import { dirname } from 'path';
 import { fileURLToPath } from 'url';
+import https from 'https';
 import react from '@vitejs/plugin-react';
 
 if (
@@ -40,8 +41,6 @@ if (host === 'localhost') {
     clientPort: 443,
   };
 }
-
-console.log('dirname: ', dirname(fileURLToPath(import.meta.url)));
 
 export default defineConfig({
   root: dirname(fileURLToPath(import.meta.url)),

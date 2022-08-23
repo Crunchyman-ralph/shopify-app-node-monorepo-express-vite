@@ -2,6 +2,7 @@ import { useMemo, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { Provider } from '@shopify/app-bridge-react';
 import { Banner, Layout, Page } from '@shopify/polaris';
+import { Children } from 'frontend/types/Children';
 import { AppConfigV2 } from '@shopify/app-bridge';
 
 /**
@@ -13,11 +14,7 @@ import { AppConfigV2 } from '@shopify/app-bridge';
  *
  * See: https://shopify.dev/apps/tools/app-bridge/react-components
  */
-export const AppBridgeProvider = ({
-  children,
-}: {
-  children?: React.ReactNode;
-}) => {
+export const AppBridgeProvider = ({ children }: Children) => {
   const location = useLocation();
   const navigate = useNavigate();
   const history = useMemo(

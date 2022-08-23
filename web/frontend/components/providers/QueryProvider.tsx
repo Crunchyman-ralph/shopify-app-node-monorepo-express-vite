@@ -1,3 +1,5 @@
+import { Children } from 'frontend/types/Children';
+import React from 'react';
 import {
   QueryClient,
   QueryClientProvider,
@@ -9,7 +11,7 @@ import {
  * Sets up the QueryClientProvider from react-query.
  * @desc See: https://react-query.tanstack.com/reference/QueryClientProvider#_top
  */
-export const QueryProvider = ({ children }: { children: React.ReactNode }) => {
+export const QueryProvider: React.FC<Children> = ({ children }) => {
   const client = new QueryClient({
     queryCache: new QueryCache(),
     mutationCache: new MutationCache(),

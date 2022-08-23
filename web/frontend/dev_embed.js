@@ -1,7 +1,5 @@
-/* eslint-disable no-empty-function */
-/* eslint-disable no-underscore-dangle */
-/* eslint-disable no-undef */
-// @ts-nocheck
+/* eslint-disable no-underscore-dangle, no-empty-function, no-undef */
+//@ts-nocheck
 import RefreshRuntime from '/@react-refresh';
 
 RefreshRuntime.injectIntoGlobalHook(window);

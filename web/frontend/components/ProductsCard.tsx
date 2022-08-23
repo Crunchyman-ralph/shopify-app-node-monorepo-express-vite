@@ -9,11 +9,10 @@ import {
 import { Toast, ToastProps } from '@shopify/app-bridge-react';
 import { useAppQuery, useAuthenticatedFetch } from '../hooks';
 
-export const ProductsCard = () => {
-  const emptyToastProps = { content: '' };
+export function ProductsCard() {
+  const emptyToastProps = { content: '', onDismiss: () => null };
   const [isLoading, setIsLoading] = useState(true);
-  const [toastProps, setToastProps] =
-    useState<Omit<ToastProps, 'onDismiss'>>(emptyToastProps);
+  const [toastProps, setToastProps] = useState<ToastProps>(emptyToastProps);
   const fetch = useAuthenticatedFetch();
 
   const {
@@ -21,7 +20,7 @@ export const ProductsCard = () => {
     refetch: refetchProductCount,
     isLoading: isLoadingCount,
     isRefetching: isRefetchingCount,
-  } = useAppQuery<any>({
+  } = useAppQuery<{ count: number }>({
     url: '/api/products/count',
     reactQueryOptions: {
       onSuccess: () => {
@@ -40,12 +39,13 @@ export const ProductsCard = () => {
 
     if (response.ok) {
       await refetchProductCount();
-      setToastProps({ content: '5 products created!' });
+      setToastProps({ content: '5 products created!', onDismiss: () => null });
     } else {
       setIsLoading(false);
       setToastProps({
         content: 'There was an error creating products',
         error: true,
+        onDismiss: () => null,
       });
     }
   };
@@ -71,7 +71,7 @@ export const ProductsCard = () => {
             TOTAL PRODUCTS
             <DisplayText size="medium">
               <TextStyle variation="strong">
-                {isLoadingCount ? '-' : data.count}
+                {isLoadingCount ? '-' : data?.count}
               </TextStyle>
             </DisplayText>
           </Heading>
@@ -79,4 +79,4 @@ export const ProductsCard = () => {
       </Card>
     </>
   );
-};
+}

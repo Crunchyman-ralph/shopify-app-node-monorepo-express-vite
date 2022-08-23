@@ -1,8 +1,9 @@
-import { useCallback } from 'react';
-import { AppProvider, AppProviderProps } from '@shopify/polaris';
+import React, { useCallback } from 'react';
+import { AppProvider } from '@shopify/polaris';
 import { useNavigate } from '@shopify/app-bridge-react';
 import translations from '@shopify/polaris/locales/en.json';
 import '@shopify/polaris/build/esm/styles.css';
+import { Children } from 'frontend/types/Children';
 
 type LinkLikeComponentProps = {
   /** The url to link to */
@@ -16,12 +17,12 @@ type LinkLikeComponentProps = {
   [key: string]: any;
 };
 
-const AppBridgeLink = ({
+const AppBridgeLink: React.FC<LinkLikeComponentProps> = ({
   url,
   children,
   external,
   ...rest
-}: LinkLikeComponentProps) => {
+}) => {
   const navigate = useNavigate();
   const handleClick = useCallback(() => {
     navigate(url);
@@ -65,15 +66,8 @@ const AppBridgeLink = ({
  * PolarisProvider also passes translations to Polaris.
  *
  */
-export const PolarisProvider = ({
-  children,
-}: {
-  children: React.ReactNode;
-}) => (
-  <AppProvider
-    i18n={translations}
-    linkComponent={AppBridgeLink as AppProviderProps['linkComponent']}
-  >
+export const PolarisProvider: React.FC<Children> = ({ children }) => (
+  <AppProvider i18n={translations} linkComponent={AppBridgeLink}>
     {children}
   </AppProvider>
 );
