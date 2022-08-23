@@ -1,9 +1,12 @@
 import { Shopify } from '@shopify/shopify-api';
-import ensureBilling, { ShopifyBillingError } from '../helpers/ensureBilling';
-import { Express, NextFunction, Response, Request } from 'express';
+import { NextFunction, Request, Response, Express } from 'express';
+import ensureBilling, {
+  BillingOptions,
+  ShopifyBillingError,
+} from '../helpers/ensure-billing';
+import redirectToAuth from '../helpers/redirect-to-auth';
 
-import returnTopLevelRedirection from '../helpers/returnTopLevelRedirection';
-import { BillingOptions } from './auth';
+import returnTopLevelRedirection from '../helpers/return-top-level-redirection';
 
 const TEST_GRAPHQL_QUERY = `
 {
@@ -17,17 +20,20 @@ type VerifyRequestOptions = {
   returnHeader: boolean;
 };
 
-const defaultOptions = {
+const defaultOptions: VerifyRequestOptions = {
   billing: {
     required: false,
+    amount: 0,
+    chargeName: 'default',
+    currencyCode: 'USD',
+    interval: 'EVERY_30_DAYS',
   },
+  returnHeader: false,
 };
 
 export default function verifyRequest(
   app: Express,
-  {
-    billing = { required: false },
-  }: Partial<VerifyRequestOptions> = defaultOptions
+  { billing }: Partial<VerifyRequestOptions> = defaultOptions
 ) {
   return async (req: Request, res: Response, next: NextFunction) => {
     const session = await Shopify.Utils.loadCurrentSession(
@@ -39,17 +45,16 @@ export default function verifyRequest(
     let shop = Shopify.Utils.sanitizeShop(req.query.shop as string);
     if (session && shop && session.shop !== shop) {
       // The current request is for a different shop. Redirect gracefully.
-      return res.redirect(`/api/auth?shop=${encodeURIComponent(shop)}`);
+      return redirectToAuth(req, res, app);
     }
 
     if (session?.isActive()) {
       try {
-        if (billing.required) {
+        if (billing?.required) {
           // The request to check billing status serves to validate that the access token is still valid.
-          const [hasPayment, confirmationUrl] = await ensureBilling(
-            session,
-            billing
-          );
+          const [hasPayment, confirmationUrl] = await ensureBilling(session, {
+            ...billing,
+          });
 
           if (!hasPayment) {
             returnTopLevelRedirection(req, res, confirmationUrl);
@@ -71,6 +76,8 @@ export default function verifyRequest(
         ) {
           // Re-authenticate if we get a 401 response
         } else if (error instanceof ShopifyBillingError) {
+          // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+          //@ts-ignore
           console.error(error.message, error.errorData[0]);
           res.status(500).end();
           return;

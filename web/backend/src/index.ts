@@ -1,5 +1,5 @@
-// @ts-check
 import path from 'path';
+import { readFileSync } from 'fs';
 import express from 'express';
 import cookieParser from 'cookie-parser';
 import {
@@ -9,17 +9,14 @@ import {
 } from '@shopify/shopify-api';
 
 import applyAuthMiddleware from './middleware/auth';
-import verifyRequest from './middleware/verifyRequest';
+import verifyRequest from './middleware/verify-request';
 import { setupGDPRWebHooks } from './gdpr';
-import productCreator from './helpers/productCreator';
-// import { BillingInterval } from './helpers/ensureBilling';
-import { AppInstallations } from './appInstallations';
-import { LoadEnvs } from '@axe/common';
-
-LoadEnvs.loadEnvs();
+import productCreator from './helpers/product-creator';
+import redirectToAuth from './helpers/redirect-to-auth';
+import { BillingInterval, BillingOptions } from './helpers/ensure-billing';
+import { AppInstallations } from './app_installations';
 
 const USE_ONLINE_TOKENS = false;
-const TOP_LEVEL_OAUTH_COOKIE = 'shopify_top_level_oauth';
 
 const PORT = Number.parseInt(
   process.env.BACKEND_PORT! || process.env.PORT!,
@@ -28,18 +25,9 @@ const PORT = Number.parseInt(
 
 // TODO: There should be provided by env vars
 const DEV_INDEX_PATH = `${process.cwd()}/../frontend/`;
-const PROD_INDEX_PATH = `${process.cwd()}/../frontend/dist/`;
+const PROD_INDEX_PATH = `${process.cwd()}/frontend/dist/`;
 
 const DB_PATH = `${process.cwd()}/database.sqlite`;
-// const DB_PATH = process.env.MONGO_DB_PATH;
-const DB_NAME = process.env.MONGO_DB_NAME;
-
-if (!DB_PATH || !DB_NAME) {
-  console.log('DB_PATH', DB_PATH);
-  throw new Error(
-    'DB_PATH and DB_NAME must be provided, create a new .env file and enter the DB_PATH and DB_NAME'
-  );
-}
 
 Shopify.Context.initialize({
   API_KEY: process.env.SHOPIFY_API_KEY!,
@@ -62,8 +50,12 @@ Shopify.Webhooks.Registry.addHandler('APP_UNINSTALLED', {
 
 // The transactions with Shopify will always be marked as test transactions, unless NODE_ENV is production.
 // See the ensureBilling helper to learn more about billing in this template.
-const BILLING_SETTINGS = {
+const BILLING_SETTINGS: BillingOptions = {
   required: false,
+  amount: 0,
+  chargeName: 'default',
+  currencyCode: 'USD',
+  interval: BillingInterval.Every30Days,
   // This is an example configuration that would do a one-time charge for $5 (only USD is currently supported)
   // chargeName: "My Shopify One-Time Charge",
   // amount: 5.0,
@@ -86,9 +78,8 @@ export const createServer = async (
   billingSettings = BILLING_SETTINGS
 ) => {
   const app = express();
-  app.set('top-level-oauth-cookie', TOP_LEVEL_OAUTH_COOKIE);
-  app.set('use-online-tokens', USE_ONLINE_TOKENS);
 
+  app.set('use-online-tokens', USE_ONLINE_TOKENS);
   app.use(cookieParser(Shopify.Context.API_SECRET_KEY));
 
   applyAuthMiddleware(app, {
@@ -140,16 +131,16 @@ export const createServer = async (
       app.get('use-online-tokens')
     );
     let status = 200;
-    let errorReturn = null;
+    let errorMessage = null;
 
     try {
       await productCreator(session as SessionInterface);
     } catch (error: any) {
       console.log(`Failed to process products/create: ${error.message}`);
       status = 500;
-      errorReturn = error.message;
+      errorMessage = error.message;
     }
-    res.status(status).send({ success: status === 200, error: errorReturn });
+    res.status(status).send({ success: status === 200, error: errorMessage });
   });
 
   // All endpoints after this point will have access to a request.body
@@ -183,7 +174,13 @@ export const createServer = async (
   }
 
   app.use('/*', async (req, res, next) => {
-    const shop = Shopify.Utils.sanitizeShop(req.query.shop as string);
+    if (typeof req.query.shop !== 'string') {
+      res.status(500);
+      return res.send('No shop provided');
+    }
+
+    const shop = Shopify.Utils.sanitizeShop(req.query.shop);
+
     if (!shop) {
       res.status(500);
       return res.send('No shop provided');
@@ -191,19 +188,25 @@ export const createServer = async (
 
     const appInstalled = await AppInstallations.includes(shop);
 
-    if (shop && !appInstalled) {
-      res.redirect(`/api/auth?shop=${encodeURIComponent(shop)}`);
-    } else {
-      const fs = await import('fs');
-      const fallbackFile = path.join(
-        isProd ? PROD_INDEX_PATH : DEV_INDEX_PATH,
-        'index.html'
-      );
-      res
-        .status(200)
-        .set('Content-Type', 'text/html')
-        .send(fs.readFileSync(fallbackFile));
+    if (!appInstalled) {
+      return redirectToAuth(req, res, app);
     }
+
+    if (Shopify.Context.IS_EMBEDDED_APP && req.query.embedded !== '1') {
+      const embeddedUrl = Shopify.Utils.getEmbeddedAppUrl(req);
+
+      return res.redirect(embeddedUrl + req.path);
+    }
+
+    const htmlFile = path.join(
+      isProd ? PROD_INDEX_PATH : DEV_INDEX_PATH,
+      'index.html'
+    );
+
+    return res
+      .status(200)
+      .set('Content-Type', 'text/html')
+      .send(readFileSync(htmlFile));
   });
 
   return { app };

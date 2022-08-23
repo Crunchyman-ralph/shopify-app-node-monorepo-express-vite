@@ -102,7 +102,7 @@ export default async function productCreator(
   } catch (error: any) {
     const newError =
       error instanceof Shopify.Errors.GraphqlQueryError
-        ? new Error(
+        ? new TypeError(
             `${error.message}\n${JSON.stringify(error.response, null, 2)}`
           )
         : error;

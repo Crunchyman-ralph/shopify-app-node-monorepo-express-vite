@@ -10,7 +10,7 @@ export const setupGDPRWebHooks = (path: string) => {
   Shopify.Webhooks.Registry.addHandler('CUSTOMERS_DATA_REQUEST', {
     path,
     webhookHandler: async (topic, shop, body) => {
-      // const payload = JSON.parse(body);
+      const payload = JSON.parse(body);
       // Payload has the following shape:
       // {
       //   "shop_id": 954889,

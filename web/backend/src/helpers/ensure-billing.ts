@@ -1,12 +1,19 @@
-import { Shopify } from '@shopify/shopify-api';
+import { SessionInterface, Shopify } from '@shopify/shopify-api';
 import { GraphqlClient } from '@shopify/shopify-api/dist/clients/graphql';
-import { BillingOptions } from 'backend/src/middleware/auth';
+
+export type BillingOptions = {
+  required: boolean;
+  chargeName: string;
+  amount: number;
+  currencyCode: string; // TODO: Change type to CurrencyCode from schema.graphql
+  interval: typeof BillingInterval[keyof typeof BillingInterval];
+};
 
 export const BillingInterval = {
   OneTime: 'ONE_TIME',
   Every30Days: 'EVERY_30_DAYS',
   Annual: 'ANNUAL',
-};
+} as const;
 
 const RECURRING_INTERVALS = new Set([
   BillingInterval.Every30Days,
@@ -23,8 +30,8 @@ let isProd: boolean;
  * Learn more about billing in our documentation: https://shopify.dev/apps/billing
  */
 export default async function ensureBilling(
-  session: any,
-  { chargeName, amount, currencyCode, interval }: any,
+  session: SessionInterface,
+  { chargeName, amount, currencyCode, interval }: BillingOptions,
   isProdOverride = process.env.NODE_ENV === 'production'
 ) {
   if (!Object.values(BillingInterval).includes(interval)) {
@@ -50,10 +57,9 @@ export default async function ensureBilling(
 
   return [hasPayment, confirmationUrl];
 }
-
 const hasActivePayment = async (
-  session: { shop: string; accessToken: string | undefined },
-  { chargeName, interval }: { chargeName: any; interval: any }
+  session: SessionInterface,
+  { chargeName, interval }: Pick<BillingOptions, 'chargeName' | 'interval'>
 ) => {
   const client = new Shopify.Clients.Graphql(session.shop, session.accessToken);
 
@@ -104,13 +110,13 @@ const hasActivePayment = async (
 };
 
 const requestPayment = async (
-  session: { shop: string; accessToken: string | undefined },
+  session: SessionInterface,
   {
     chargeName,
     amount,
     currencyCode,
     interval,
-  }: { chargeName: any; amount: any; currencyCode: any; interval: any }
+  }: Omit<BillingOptions, 'required'>
 ) => {
   const client = new Shopify.Clients.Graphql(session.shop, session.accessToken);
   const returnUrl = `https://${Shopify.Context.HOST_NAME}?shop=${
@@ -153,7 +159,7 @@ const requestRecurringPayment = async (
     amount,
     currencyCode,
     interval,
-  }: { chargeName: any; amount: any; currencyCode: any; interval: any }
+  }: Omit<BillingOptions, 'required'>
 ) => {
   const mutationResponse = (await client.query({
     data: {
@@ -176,7 +182,7 @@ const requestRecurringPayment = async (
     },
   })) as any;
 
-  if (mutationResponse.body.errors && mutationResponse.body.errors.length > 0) {
+  if (mutationResponse.body.errors && mutationResponse.body.errors.length) {
     throw new ShopifyBillingError(
       'Error while billing the store',
       mutationResponse.body.errors
@@ -189,7 +195,11 @@ const requestRecurringPayment = async (
 const requestSinglePayment = async (
   client: GraphqlClient,
   returnUrl: string,
-  { chargeName, amount, currencyCode }: BillingOptions
+  {
+    chargeName,
+    amount,
+    currencyCode,
+  }: Omit<BillingOptions, 'required' | 'interval'>
 ) => {
   const mutationResponse = (await client.query({
     data: {
@@ -203,7 +213,7 @@ const requestSinglePayment = async (
     },
   })) as any;
 
-  if (mutationResponse.body.errors?.length) {
+  if (mutationResponse.body.errors && mutationResponse.body.errors.length) {
     throw new ShopifyBillingError(
       'Error while billing the store',
       mutationResponse.body.errors
@@ -213,9 +223,11 @@ const requestSinglePayment = async (
   return mutationResponse;
 };
 
-const isRecurring = (interval: string) => RECURRING_INTERVALS.has(interval);
+const isRecurring = (interval: string) =>
+  RECURRING_INTERVALS.has(
+    interval as Exclude<BillingOptions['interval'], 'ONE_TIME'>
+  );
 
-// eslint-disable-next-line func-style
 export class ShopifyBillingError {
   name;
   stack;

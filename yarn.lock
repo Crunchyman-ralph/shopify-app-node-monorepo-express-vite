@@ -2785,7 +2785,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@shopify/shopify-api@npm:5.0.1":
+"@shopify/shopify-api@npm:5.0.1, @shopify/shopify-api@npm:^5.0.1":
   version: 5.0.1
   resolution: "@shopify/shopify-api@npm:5.0.1"
   dependencies:
@@ -4249,27 +4249,20 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "backend@workspace:web/backend"
   dependencies:
-    "@shopify/shopify-api": 5.0.1
+    "@shopify/shopify-api": ^5.0.1
     "@types/compression": 1.7.2
     "@types/cookie-parser": 1.4.3
     "@types/express": 4.17.13
-    "@types/node": 18.7.8
-    "@vitejs/plugin-react": 2.0.1
-    compression: 1.7.4
-    cookie-parser: 1.4.6
-    cross-env: 7.0.3
-    dotenv: 16.0.1
-    express: 4.18.1
-    husky: 8.0.1
-    jsonwebtoken: 8.5.1
-    nodemon: 2.0.19
-    prettier: 2.7.1
-    pretty-quick: 3.1.3
-    serve-static: 1.15.0
-    supertest: 6.2.4
-    ts-node: 10.9.1
-    typescript: 4.7.4
-    vitest: 0.22.1
+    compression: ^1.7.4
+    cookie-parser: ^1.4.6
+    cross-env: ^7.0.3
+    express: ^4.18.1
+    jsonwebtoken: ^8.5.1
+    nodemon: ^2.0.19
+    prettier: ^2.7.1
+    pretty-quick: ^3.1.3
+    serve-static: ^1.15.0
+    ts-node: ^10.9.1
   languageName: unknown
   linkType: soft
 
@@ -5021,7 +5014,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"compression@npm:1.7.4":
+"compression@npm:1.7.4, compression@npm:^1.7.4":
   version: 1.7.4
   resolution: "compression@npm:1.7.4"
   dependencies:
@@ -5104,7 +5097,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"cookie-parser@npm:1.4.6":
+"cookie-parser@npm:1.4.6, cookie-parser@npm:^1.4.6":
   version: 1.4.6
   resolution: "cookie-parser@npm:1.4.6"
   dependencies:
@@ -5245,7 +5238,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"cross-env@npm:7.0.3":
+"cross-env@npm:7.0.3, cross-env@npm:^7.0.3":
   version: 7.0.3
   resolution: "cross-env@npm:7.0.3"
   dependencies:
@@ -6699,7 +6692,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"express@npm:4.18.1":
+"express@npm:4.18.1, express@npm:^4.18.1":
   version: 4.18.1
   resolution: "express@npm:4.18.1"
   dependencies:
@@ -9162,7 +9155,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"jsonwebtoken@npm:8.5.1, jsonwebtoken@npm:^8.5.1":
+"jsonwebtoken@npm:^8.5.1":
   version: 8.5.1
   resolution: "jsonwebtoken@npm:8.5.1"
   dependencies:
@@ -10363,7 +10356,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"nodemon@npm:2.0.19":
+"nodemon@npm:2.0.19, nodemon@npm:^2.0.19":
   version: 2.0.19
   resolution: "nodemon@npm:2.0.19"
   dependencies:
@@ -11326,7 +11319,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"prettier@npm:2.7.1, prettier@npm:^2.6.2":
+"prettier@npm:2.7.1, prettier@npm:^2.6.2, prettier@npm:^2.7.1":
   version: 2.7.1
   resolution: "prettier@npm:2.7.1"
   bin:
@@ -11347,7 +11340,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"pretty-quick@npm:3.1.3":
+"pretty-quick@npm:3.1.3, pretty-quick@npm:^3.1.3":
   version: 3.1.3
   resolution: "pretty-quick@npm:3.1.3"
   dependencies:
@@ -12423,7 +12416,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"serve-static@npm:1.15.0":
+"serve-static@npm:1.15.0, serve-static@npm:^1.15.0":
   version: 1.15.0
   resolution: "serve-static@npm:1.15.0"
   dependencies:
@@ -13442,7 +13435,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"ts-node@npm:10.9.1, ts-node@npm:^10.8.1":
+"ts-node@npm:10.9.1, ts-node@npm:^10.8.1, ts-node@npm:^10.9.1":
   version: 10.9.1
   resolution: "ts-node@npm:10.9.1"
   dependencies:

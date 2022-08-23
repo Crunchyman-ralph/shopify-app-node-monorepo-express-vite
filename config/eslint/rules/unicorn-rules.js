@@ -9,10 +9,7 @@ module.exports = {
     'unicorn/prevent-abbreviations': 'off',
     'unicorn/prefer-module': 'off',
     'unicorn/numeric-separators-style': 'off',
-    'unicorn/filename-case': [
-      'error',
-      { cases: { pascalCase: true, camelCase: true } },
-    ],
+    'unicorn/filename-case': ['off'],
     'unicorn/no-null': 'off',
     'unicorn/no-array-reduce': 'off',
     'unicorn/no-array-callback-reference': 'off',

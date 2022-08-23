@@ -1,4 +1,4 @@
-import { Response, Request } from 'express';
+import { Request, Response } from 'express';
 
 export default function returnTopLevelRedirection(
   req: Request,
