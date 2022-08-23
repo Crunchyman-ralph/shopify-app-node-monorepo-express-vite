@@ -8,6 +8,7 @@ export default function ExitIframe() {
   const { search } = useLocation();
 
   useEffect(() => {
+    // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
     if (!!app && !!search) {
       const params = new URLSearchParams(search);
       const redirectUri = params.get('redirectUri');

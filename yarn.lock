@@ -56,12 +56,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@axe/common@workspace:*, @axe/common@workspace:web/axe-common":
+"@axe/common@0.1.0, @axe/common@workspace:web/axe-common":
   version: 0.0.0-use.local
   resolution: "@axe/common@workspace:web/axe-common"
   dependencies:
     "@types/jest": 28.1.7
-    "@types/node": 18.7.8
+    "@types/node": 18.7.11
     dotenv: 16.0.1
     jest: 28.1.3
     tslib: 2.4.0
@@ -2524,7 +2524,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@shopify/app-bridge-react@npm:3.2.2, @shopify/app-bridge-react@npm:^3.2.2":
+"@shopify/app-bridge-react@npm:3.2.2":
   version: 3.2.2
   resolution: "@shopify/app-bridge-react@npm:3.2.2"
   dependencies:
@@ -2535,7 +2535,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@shopify/app-bridge-utils@npm:3.2.2, @shopify/app-bridge-utils@npm:^3.2.2":
+"@shopify/app-bridge-utils@npm:3.2.2":
   version: 3.2.2
   resolution: "@shopify/app-bridge-utils@npm:3.2.2"
   dependencies:
@@ -2701,7 +2701,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@shopify/polaris@npm:10.0.0, @shopify/polaris@npm:^10.0.0":
+"@shopify/polaris@npm:10.0.0":
   version: 10.0.0
   resolution: "@shopify/polaris@npm:10.0.0"
   dependencies:
@@ -2719,7 +2719,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@shopify/shopify-api@npm:5.0.1, @shopify/shopify-api@npm:^5.0.1":
+"@shopify/shopify-api@npm:5.0.1":
   version: 5.0.1
   resolution: "@shopify/shopify-api@npm:5.0.1"
   dependencies:
@@ -2906,6 +2906,22 @@ __metadata:
     "@types/node": "*"
     "@types/responselike": "*"
   checksum: 667d25808dbf46fe104d6f029e0281ff56058d50c7c1b9182774b3e38bb9c1124f56e4c367ba54f92dbde2d1cc573f26eb0e9748710b2822bc0fd1e5498859c6
+  languageName: node
+  linkType: hard
+
+"@types/chai-subset@npm:^1.3.3":
+  version: 1.3.3
+  resolution: "@types/chai-subset@npm:1.3.3"
+  dependencies:
+    "@types/chai": "*"
+  checksum: 4481da7345022995f5a105e6683744f7203d2c3d19cfe88d8e17274d045722948abf55e0adfd97709e0f043dade37a4d4e98cd4c660e2e8a14f23e6ecf79418f
+  languageName: node
+  linkType: hard
+
+"@types/chai@npm:*, @types/chai@npm:^4.3.3":
+  version: 4.3.3
+  resolution: "@types/chai@npm:4.3.3"
+  checksum: 20cd094753e137cfc35939cae7f0ed78ecda7861e5c94704efab6979b9121a63807e9b631bdcf3a2792d6c6dba44050b13387262f9e63ebb040741c01c345f0a
   languageName: node
   linkType: hard
 
@@ -3118,13 +3134,6 @@ __metadata:
   version: 18.7.11
   resolution: "@types/node@npm:18.7.11"
   checksum: 66f200a5595d94285fa2052d29048b328acd729ace4be3516d3d2c1736ab33b5cbf698bec70afc5c6101e5df6c9867e3ec3a091dd937886c1e7a712ddde60f69
-  languageName: node
-  linkType: hard
-
-"@types/node@npm:18.7.8":
-  version: 18.7.8
-  resolution: "@types/node@npm:18.7.8"
-  checksum: e0125efefa896083c05f549d93166109959ffdd68cb626aad0d660c0ce9de888fe405b4763b4a3c3e0968560409c272413e0ad07204522543c688e162a617ecb
   languageName: node
   linkType: hard
 
@@ -3936,6 +3945,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"assertion-error@npm:^1.1.0":
+  version: 1.1.0
+  resolution: "assertion-error@npm:1.1.0"
+  checksum: fd9429d3a3d4fd61782eb3962ae76b6d08aa7383123fca0596020013b3ebd6647891a85b05ce821c47d1471ed1271f00b0545cf6a4326cf2fc91efcc3b0fbecf
+  languageName: node
+  linkType: hard
+
 "ast-types-flow@npm:^0.0.7":
   version: 0.0.7
   resolution: "ast-types-flow@npm:0.0.7"
@@ -4144,20 +4160,20 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "backend@workspace:web/backend"
   dependencies:
-    "@shopify/shopify-api": ^5.0.1
+    "@shopify/shopify-api": 5.0.1
     "@types/compression": 1.7.2
     "@types/cookie-parser": 1.4.3
     "@types/express": 4.17.13
-    compression: ^1.7.4
-    cookie-parser: ^1.4.6
-    cross-env: ^7.0.3
-    express: ^4.18.1
-    jsonwebtoken: ^8.5.1
-    nodemon: ^2.0.19
-    prettier: ^2.7.1
-    pretty-quick: ^3.1.3
-    serve-static: ^1.15.0
-    ts-node: ^10.9.1
+    compression: 1.7.4
+    cookie-parser: 1.4.6
+    cross-env: 7.0.3
+    express: 4.18.1
+    jsonwebtoken: 8.5.1
+    nodemon: 2.0.19
+    prettier: 2.7.1
+    pretty-quick: 3.1.3
+    serve-static: 1.15.0
+    ts-node: 10.9.1
   languageName: unknown
   linkType: soft
 
@@ -4537,6 +4553,21 @@ __metadata:
   languageName: node
   linkType: hard
 
+"chai@npm:^4.3.6":
+  version: 4.3.6
+  resolution: "chai@npm:4.3.6"
+  dependencies:
+    assertion-error: ^1.1.0
+    check-error: ^1.0.2
+    deep-eql: ^3.0.1
+    get-func-name: ^2.0.0
+    loupe: ^2.3.1
+    pathval: ^1.1.1
+    type-detect: ^4.0.5
+  checksum: acff93fd537f96d4a4d62dd83810285dffcfccb5089e1bf2a1205b28ec82d93dff551368722893cf85004282df10ee68802737c33c90c5493957ed449ed7ce71
+  languageName: node
+  linkType: hard
+
 "chalk@npm:4.1.2, chalk@npm:^4.0.0, chalk@npm:^4.0.2, chalk@npm:^4.1.0, chalk@npm:^4.1.1, chalk@npm:^4.1.2":
   version: 4.1.2
   resolution: "chalk@npm:4.1.2"
@@ -4599,6 +4630,13 @@ __metadata:
   version: 0.7.0
   resolution: "chardet@npm:0.7.0"
   checksum: 6fd5da1f5d18ff5712c1e0aed41da200d7c51c28f11b36ee3c7b483f3696dabc08927fc6b227735eb8f0e1215c9a8abd8154637f3eff8cada5959df7f58b024d
+  languageName: node
+  linkType: hard
+
+"check-error@npm:^1.0.2":
+  version: 1.0.2
+  resolution: "check-error@npm:1.0.2"
+  checksum: d9d106504404b8addd1ee3f63f8c0eaa7cd962a1a28eb9c519b1c4a1dc7098be38007fc0060f045ee00f075fbb7a2a4f42abcf61d68323677e11ab98dc16042e
   languageName: node
   linkType: hard
 
@@ -4880,7 +4918,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"compression@npm:1.7.4, compression@npm:^1.7.4":
+"compression@npm:1.7.4":
   version: 1.7.4
   resolution: "compression@npm:1.7.4"
   dependencies:
@@ -4963,7 +5001,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"cookie-parser@npm:1.4.6, cookie-parser@npm:^1.4.6":
+"cookie-parser@npm:1.4.6":
   version: 1.4.6
   resolution: "cookie-parser@npm:1.4.6"
   dependencies:
@@ -5097,7 +5135,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"cross-env@npm:7.0.3, cross-env@npm:^7.0.3":
+"cross-env@npm:7.0.3":
   version: 7.0.3
   resolution: "cross-env@npm:7.0.3"
   dependencies:
@@ -5353,6 +5391,15 @@ __metadata:
   version: 0.7.0
   resolution: "dedent@npm:0.7.0"
   checksum: 87de191050d9a40dd70cad01159a0bcf05ecb59750951242070b6abf9569088684880d00ba92a955b4058804f16eeaf91d604f283929b4f614d181cd7ae633d2
+  languageName: node
+  linkType: hard
+
+"deep-eql@npm:^3.0.1":
+  version: 3.0.1
+  resolution: "deep-eql@npm:3.0.1"
+  dependencies:
+    type-detect: ^4.0.0
+  checksum: 4f4c9fb79eb994fb6e81d4aa8b063adc40c00f831588aa65e20857d5d52f15fb23034a6576ecf886f7ff6222d5ae42e71e9b7d57113e0715b1df7ea1e812b125
   languageName: node
   linkType: hard
 
@@ -6523,7 +6570,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"express@npm:4.18.1, express@npm:^4.18.1":
+"express@npm:4.18.1":
   version: 4.18.1
   resolution: "express@npm:4.18.1"
   dependencies:
@@ -6967,20 +7014,20 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "frontend@workspace:web/frontend"
   dependencies:
-    "@shopify/app-bridge": ^3.2.2
-    "@shopify/app-bridge-react": ^3.2.2
-    "@shopify/app-bridge-utils": ^3.2.2
-    "@shopify/polaris": ^10.0.0
+    "@shopify/app-bridge": 3.2.2
+    "@shopify/app-bridge-react": 3.2.2
+    "@shopify/app-bridge-utils": 3.2.2
+    "@shopify/polaris": 10.0.0
     "@vitejs/plugin-react": 2.0.1
-    history: ^5.3.0
-    jsdom: ^20.0.0
-    prettier: ^2.7.1
-    react: ^18.2.0
-    react-dom: ^18.2.0
-    react-query: ^3.39.2
-    react-router-dom: ^6.3.0
-    vi-fetch: ^0.8.0
-    vite: ^3.0.9
+    history: 5.3.0
+    jsdom: 20.0.0
+    prettier: 2.7.1
+    react: 18.2.0
+    react-dom: 18.2.0
+    react-query: 3.39.2
+    react-router-dom: 6.3.0
+    vi-fetch: 0.8.0
+    vite: 3.0.9
   languageName: unknown
   linkType: soft
 
@@ -7165,6 +7212,13 @@ __metadata:
   version: 2.0.5
   resolution: "get-caller-file@npm:2.0.5"
   checksum: b9769a836d2a98c3ee734a88ba712e62703f1df31b94b784762c433c27a386dd6029ff55c2a920c392e33657d80191edbf18c61487e198844844516f843496b9
+  languageName: node
+  linkType: hard
+
+"get-func-name@npm:^2.0.0":
+  version: 2.0.0
+  resolution: "get-func-name@npm:2.0.0"
+  checksum: 8d82e69f3e7fab9e27c547945dfe5cc0c57fc0adf08ce135dddb01081d75684a03e7a0487466f478872b341d52ac763ae49e660d01ab83741f74932085f693c3
   languageName: node
   linkType: hard
 
@@ -7539,7 +7593,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"history@npm:^5.2.0, history@npm:^5.3.0":
+"history@npm:5.3.0, history@npm:^5.2.0":
   version: 5.3.0
   resolution: "history@npm:5.3.0"
   dependencies:
@@ -8777,7 +8831,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"jsdom@npm:^20.0.0":
+"jsdom@npm:20.0.0":
   version: 20.0.0
   resolution: "jsdom@npm:20.0.0"
   dependencies:
@@ -8926,7 +8980,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"jsonwebtoken@npm:^8.5.1":
+"jsonwebtoken@npm:8.5.1, jsonwebtoken@npm:^8.5.1":
   version: 8.5.1
   resolution: "jsonwebtoken@npm:8.5.1"
   dependencies:
@@ -9201,6 +9255,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"local-pkg@npm:^0.4.2":
+  version: 0.4.2
+  resolution: "local-pkg@npm:0.4.2"
+  checksum: 22be451353c25c4411b552bf01880ebc9e995b93574b2facc7757968d888356df59199cacada14162ab53bbc9da055bb692c907b4171f008dbce45a2afc777c1
+  languageName: node
+  linkType: hard
+
 "locate-path@npm:^3.0.0":
   version: 3.0.0
   resolution: "locate-path@npm:3.0.0"
@@ -9394,6 +9455,15 @@ __metadata:
   bin:
     loose-envify: cli.js
   checksum: 6517e24e0cad87ec9888f500c5b5947032cdfe6ef65e1c1936a0c48a524b81e65542c9c3edc91c97d5bddc806ee2a985dbc79be89215d613b1de5db6d1cfe6f4
+  languageName: node
+  linkType: hard
+
+"loupe@npm:^2.3.1":
+  version: 2.3.4
+  resolution: "loupe@npm:2.3.4"
+  dependencies:
+    get-func-name: ^2.0.0
+  checksum: 5af91db61aa18530f1749a64735ee194ac263e65e9f4d1562bf3036c591f1baa948289c193e0e34c7b5e2c1b75d3c1dc4fce87f5edb3cee10b0c0df46bc9ffb3
   languageName: node
   linkType: hard
 
@@ -9902,7 +9972,7 @@ __metadata:
   resolution: "my-node-app@workspace:."
   dependencies:
     "@apollo/client": 3.6.9
-    "@axe/common": "workspace:*"
+    "@axe/common": 0.1.0
     "@babel/core": 7.18.13
     "@babel/eslint-parser": 7.18.9
     "@babel/preset-env": 7.18.10
@@ -9951,6 +10021,7 @@ __metadata:
     typescript: 4.7.4
     typescript-plugin-css-modules: 3.4.0
     vite: 3.0.9
+    vitest: 0.22.1
   languageName: unknown
   linkType: soft
 
@@ -10159,7 +10230,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"nodemon@npm:^2.0.19":
+"nodemon@npm:2.0.19":
   version: 2.0.19
   resolution: "nodemon@npm:2.0.19"
   dependencies:
@@ -10790,6 +10861,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"pathval@npm:^1.1.1":
+  version: 1.1.1
+  resolution: "pathval@npm:1.1.1"
+  checksum: 090e3147716647fb7fb5b4b8c8e5b55e5d0a6086d085b6cd23f3d3c01fcf0ff56fd3cc22f2f4a033bd2e46ed55d61ed8379e123b42afe7d531a2a5fc8bb556d6
+  languageName: node
+  linkType: hard
+
 "pend@npm:~1.2.0":
   version: 1.2.0
   resolution: "pend@npm:1.2.0"
@@ -11115,7 +11193,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"prettier@npm:2.7.1, prettier@npm:^2.6.2, prettier@npm:^2.7.1":
+"prettier@npm:2.7.1, prettier@npm:^2.6.2":
   version: 2.7.1
   resolution: "prettier@npm:2.7.1"
   bin:
@@ -11136,7 +11214,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"pretty-quick@npm:3.1.3, pretty-quick@npm:^3.1.3":
+"pretty-quick@npm:3.1.3":
   version: 3.1.3
   resolution: "pretty-quick@npm:3.1.3"
   dependencies:
@@ -11366,7 +11444,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-dom@npm:18.2.0, react-dom@npm:^18.2.0":
+"react-dom@npm:18.2.0":
   version: 18.2.0
   resolution: "react-dom@npm:18.2.0"
   dependencies:
@@ -11399,7 +11477,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-query@npm:^3.39.2":
+"react-query@npm:3.39.2":
   version: 3.39.2
   resolution: "react-query@npm:3.39.2"
   dependencies:
@@ -11424,7 +11502,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-router-dom@npm:^6.3.0":
+"react-router-dom@npm:6.3.0":
   version: 6.3.0
   resolution: "react-router-dom@npm:6.3.0"
   dependencies:
@@ -11463,7 +11541,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react@npm:18.2.0, react@npm:^18.2.0":
+"react@npm:18.2.0":
   version: 18.2.0
   resolution: "react@npm:18.2.0"
   dependencies:
@@ -12125,7 +12203,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"serve-static@npm:1.15.0, serve-static@npm:^1.15.0":
+"serve-static@npm:1.15.0":
   version: 1.15.0
   resolution: "serve-static@npm:1.15.0"
   dependencies:
@@ -13008,7 +13086,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"tinyspy@npm:^1.0.0":
+"tinypool@npm:^0.2.4":
+  version: 0.2.4
+  resolution: "tinypool@npm:0.2.4"
+  checksum: f050bd36c89529a2a0d3f9c1fdbba3f317114e3ee6eb5d5ba72c51e887d45ef3ef8d8533fb2ca2eba7189d19d2231712b81b3a75e099248532f5563369929c33
+  languageName: node
+  linkType: hard
+
+"tinyspy@npm:^1.0.0, tinyspy@npm:^1.0.2":
   version: 1.0.2
   resolution: "tinyspy@npm:1.0.2"
   checksum: 32096121aa8d52bb625ad62c9314b3e4daba4ab9ac428217b12b1e1dfe9860e3c94d54a7affa279cc70dc6f10d88c6ba46b51de68896b318a06d02f05e87dcc3
@@ -13109,7 +13194,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"ts-node@npm:10.9.1, ts-node@npm:^10.8.1, ts-node@npm:^10.9.1":
+"ts-node@npm:10.9.1, ts-node@npm:^10.8.1":
   version: 10.9.1
   resolution: "ts-node@npm:10.9.1"
   dependencies:
@@ -13229,7 +13314,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"type-detect@npm:4.0.8":
+"type-detect@npm:4.0.8, type-detect@npm:^4.0.0, type-detect@npm:^4.0.5":
   version: 4.0.8
   resolution: "type-detect@npm:4.0.8"
   checksum: 62b5628bff67c0eb0b66afa371bd73e230399a8d2ad30d852716efcc4656a7516904570cd8631a49a3ce57c10225adf5d0cbdcb47f6b0255fe6557c453925a15
@@ -13592,7 +13677,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"vi-fetch@npm:^0.8.0":
+"vi-fetch@npm:0.8.0":
   version: 0.8.0
   resolution: "vi-fetch@npm:0.8.0"
   dependencies:
@@ -13602,7 +13687,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"vite@npm:3.0.9, vite@npm:^3.0.9":
+"vite@npm:3.0.9, vite@npm:^2.9.12 || ^3.0.0-0":
   version: 3.0.9
   resolution: "vite@npm:3.0.9"
   dependencies:
@@ -13631,6 +13716,42 @@ __metadata:
   bin:
     vite: bin/vite.js
   checksum: 6341aa43579ae45f8a383bdc0c5041dea3dff98f14e0a546d6d884a864134b00082246a28d1de8adff0ce0dd92b468c7ade8f972ffe1ed97258671d63e0f16f7
+  languageName: node
+  linkType: hard
+
+"vitest@npm:0.22.1":
+  version: 0.22.1
+  resolution: "vitest@npm:0.22.1"
+  dependencies:
+    "@types/chai": ^4.3.3
+    "@types/chai-subset": ^1.3.3
+    "@types/node": "*"
+    chai: ^4.3.6
+    debug: ^4.3.4
+    local-pkg: ^0.4.2
+    tinypool: ^0.2.4
+    tinyspy: ^1.0.2
+    vite: ^2.9.12 || ^3.0.0-0
+  peerDependencies:
+    "@edge-runtime/vm": "*"
+    "@vitest/browser": "*"
+    "@vitest/ui": "*"
+    happy-dom: "*"
+    jsdom: "*"
+  peerDependenciesMeta:
+    "@edge-runtime/vm":
+      optional: true
+    "@vitest/browser":
+      optional: true
+    "@vitest/ui":
+      optional: true
+    happy-dom:
+      optional: true
+    jsdom:
+      optional: true
+  bin:
+    vitest: vitest.mjs
+  checksum: 7abe50ceb51181e77cd62eb3a07c2da17f13078f09be34cc2e98f1f94a77eba33a56c644d48ae16bb474945ffc1cfc8664b1f4976c3de495c5e474057420c4ca
   languageName: node
   linkType: hard
 

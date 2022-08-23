@@ -88,16 +88,12 @@ export default function verifyRequest(
     }
 
     const bearerPresent = req.headers.authorization?.match(/Bearer (.*)/);
-    if (bearerPresent) {
-      if (!shop) {
-        if (session) {
-          shop = session.shop;
-        } else if (Shopify.Context.IS_EMBEDDED_APP) {
-          if (bearerPresent) {
-            const payload = Shopify.Utils.decodeSessionToken(bearerPresent[1]);
-            shop = payload.dest.replace('https://', '');
-          }
-        }
+    if (bearerPresent && !shop) {
+      if (session) {
+        shop = session.shop;
+      } else if (Shopify.Context.IS_EMBEDDED_APP) {
+        const payload = Shopify.Utils.decodeSessionToken(bearerPresent[1]);
+        shop = payload.dest.replace('https://', '');
       }
     }
 

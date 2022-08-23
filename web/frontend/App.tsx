@@ -11,6 +11,7 @@ import {
 export default function App() {
   // Any .tsx or .jsx files in /pages will become a route
   // See documentation for <Routes /> for more info
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
   //@ts-ignore
   const pages = import.meta.globEager('./pages/**/!(*.test.[jt]sx)*.([jt]sx)');
 

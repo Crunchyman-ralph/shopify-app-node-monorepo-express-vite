@@ -10,7 +10,7 @@ export const setupGDPRWebHooks = (path: string) => {
   Shopify.Webhooks.Registry.addHandler('CUSTOMERS_DATA_REQUEST', {
     path,
     webhookHandler: async (topic, shop, body) => {
-      const payload = JSON.parse(body);
+      // const payload = JSON.parse(body);
       // Payload has the following shape:
       // {
       //   "shop_id": 954889,
@@ -41,7 +41,7 @@ export const setupGDPRWebHooks = (path: string) => {
   Shopify.Webhooks.Registry.addHandler('CUSTOMERS_REDACT', {
     path,
     webhookHandler: async (topic, shop, body) => {
-      const payload = JSON.parse(body);
+      // const payload = JSON.parse(body);
       // Payload has the following shape:
       // {
       //   "shop_id": 954889,
@@ -69,7 +69,7 @@ export const setupGDPRWebHooks = (path: string) => {
   Shopify.Webhooks.Registry.addHandler('SHOP_REDACT', {
     path,
     webhookHandler: async (topic, shop, body) => {
-      const payload = JSON.parse(body);
+      // const payload = JSON.parse(body);
       // Payload has the following shape:
       // {
       //   "shop_id": 954889,

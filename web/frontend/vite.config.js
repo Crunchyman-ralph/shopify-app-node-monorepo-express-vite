@@ -1,7 +1,7 @@
 import { defineConfig } from 'vite';
 import { dirname } from 'path';
 import { fileURLToPath } from 'url';
-import https from 'https';
+// import https from 'https';
 import react from '@vitejs/plugin-react';
 
 if (

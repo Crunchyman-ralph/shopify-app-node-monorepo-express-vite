@@ -182,7 +182,7 @@ const requestRecurringPayment = async (
     },
   })) as any;
 
-  if (mutationResponse.body.errors && mutationResponse.body.errors.length) {
+  if (mutationResponse.body.errors && mutationResponse.body.errors.length > 0) {
     throw new ShopifyBillingError(
       'Error while billing the store',
       mutationResponse.body.errors
@@ -213,7 +213,7 @@ const requestSinglePayment = async (
     },
   })) as any;
 
-  if (mutationResponse.body.errors && mutationResponse.body.errors.length) {
+  if (mutationResponse.body.errors && mutationResponse.body.errors.length > 0) {
     throw new ShopifyBillingError(
       'Error while billing the store',
       mutationResponse.body.errors

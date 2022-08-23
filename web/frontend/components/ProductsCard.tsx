@@ -9,7 +9,7 @@ import {
 import { Toast, ToastProps } from '@shopify/app-bridge-react';
 import { useAppQuery, useAuthenticatedFetch } from '../hooks';
 
-export function ProductsCard() {
+export const ProductsCard = () => {
   const emptyToastProps = { content: '', onDismiss: () => null };
   const [isLoading, setIsLoading] = useState(true);
   const [toastProps, setToastProps] = useState<ToastProps>(emptyToastProps);
@@ -79,4 +79,4 @@ export function ProductsCard() {
       </Card>
     </>
   );
-}
+};

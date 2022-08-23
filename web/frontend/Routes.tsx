@@ -1,7 +1,7 @@
 import { Routes as ReactRouterRoutes, Route } from 'react-router-dom';
 
 type RoutesProps = {
-  pages: Record<string, { [key: string]: any }>;
+  pages: Record<string, Record<string, any>>;
 };
 
 /**
@@ -34,7 +34,7 @@ export default function Routes({ pages }: RoutesProps) {
   );
 }
 
-function useRoutes(pages: RoutesProps['pages']) {
+const useRoutes = (pages: RoutesProps['pages']) => {
   const routes = Object.keys(pages)
     .map((key) => {
       let path = key
@@ -52,10 +52,10 @@ function useRoutes(pages: RoutesProps['pages']) {
         /**
          * Convert /[handle].jsx and /[...handle].jsx to /:handle.jsx for react-router-dom
          */
-        .replace(/\[(?:[.]{3})?(\w+?)\]/g, (_match, param) => `:${param}`);
+        .replace(/\[(?:\.{3})?(\w+?)]/g, (_match, param) => `:${param}`);
 
       if (path.endsWith('/') && path !== '/') {
-        path = path.substring(0, path.length - 1);
+        path = path.slice(0, Math.max(0, path.length - 1));
       }
 
       if (!pages[key].default) {
@@ -70,4 +70,4 @@ function useRoutes(pages: RoutesProps['pages']) {
     .filter((route) => route.component);
 
   return routes;
-}
+};

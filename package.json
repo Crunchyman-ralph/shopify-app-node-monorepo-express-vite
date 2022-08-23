@@ -1,12 +1,14 @@
 {
   "name": "my-node-app",
-  "private": true,
   "version": "1.0.0",
+  "private": true,
+  "packageManager": "yarn@3.2.2",
   "license": "UNLICENSED",
   "workspaces": [
     "web/*"
   ],
   "scripts": {
+    "build": "shopify app build",
     "c:format": "prettier -c $INIT_CWD",
     "c:format:fix": "prettier -w $INIT_CWD",
     "c:lint": "eslint $INIT_CWD --cache --cache-location node_modules/.cache/.eslintcache",
@@ -16,17 +18,18 @@
     "c:pkg:deps:fix": "syncpack fix-mismatches && syncpack set-semver-ranges",
     "c:pkg:fix": "yarn c:pkg:deps:fix && yarn c:pkg:format:fix",
     "c:pkg:format:fix": "syncpack format",
-    "c:test": "jest $INIT_CWD --cache --passWithNoTests",
-    "c:test:ci": "jest $INIT_CWD --cache --passWithNoTests --ci -i",
-    "c:test:watch": "jest $INIT_CWD --cache --passWithNoTests --watch",
+    "c:test": "yarn c:test:frontend && yarn c:test:backend",
+    "c:test:backend": "jest $INIT_CWD/backend --cache --passWithNoTests",
+    "c:test:backend:ci": "jest $INIT_CWD --cache --passWithNoTests --ci -i",
+    "c:test:backend:watch": "jest $INIT_CWD --cache --passWithNoTests --watch",
+    "c:test:frontend": "vitest --reporter=verbose",
     "c:type": "cd $INIT_CWD && tsc -b",
-    "gen:tsconfig": "ts-node scripts/generators/tsconfig.ts",
-    "shopify": "shopify",
-    "build": "shopify app build",
+    "deploy": "shopify app deploy",
     "dev": "shopify app dev",
+    "gen:tsconfig": "ts-node scripts/generators/tsconfig.ts",
     "info": "shopify app info",
     "scaffold": "shopify app scaffold",
-    "deploy": "shopify app deploy"
+    "shopify": "shopify"
   },
   "dependencies": {
     "@apollo/client": "3.6.9",
@@ -80,7 +83,7 @@
     "tsconfig-paths": "4.1.0",
     "tslib": "2.4.0",
     "typescript": "4.7.4",
-    "typescript-plugin-css-modules": "3.4.0"
-  },
-  "packageManager": "yarn@3.2.2"
+    "typescript-plugin-css-modules": "3.4.0",
+    "vitest": "0.22.1"
+  }
 }
