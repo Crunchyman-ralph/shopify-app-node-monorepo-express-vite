@@ -40,7 +40,7 @@ module.exports = {
 
     // Non-null assertion is useful when we know value being non-null (or should be)
     // Some example: Array.find() use, or graphql return data (data!.byPath!.prop!)
-    // A null value is often easy to debug since it generally throw an error
+    // A null value is often easy to debug since it generally throws an error
     '@typescript-eslint/no-non-null-assertion': 'off',
 
     'import/no-relative-packages': 'error',
@@ -48,5 +48,8 @@ module.exports = {
       'error',
       { allowCallExpression: false },
     ],
+
+    // This rule is not compatible with Next.js's <Link /> components
+    'jsx-a11y/anchor-is-valid': 'off',
   },
 };

@@ -2,27 +2,42 @@
   "compileOnSave": false,
   "compilerOptions": {
     "composite": true,
+    "jsx": "react-jsx",
     "allowJs": true,
+    "checkJs": true,
     "allowSyntheticDefaultImports": true,
     "forceConsistentCasingInFileNames": true,
     "strict": true,
-    "checkJs": true,
     "sourceMap": true,
     "declaration": true,
-    "noEmit": false,
     "moduleResolution": "node",
     "esModuleInterop": true,
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "importHelpers": true,
-    "target": "es6",
-    "module": "commonjs",
-    "lib": ["dom", "DOM.Iterable", "ESNext"],
-    "resolveJsonModule": false,
+    "target": "es2015",
+    "module": "esnext",
+    "lib": [
+      "es2021",
+      "dom"
+    ],
     "skipLibCheck": true,
-    "jsx": "react-jsx",
     "skipDefaultLibCheck": true,
-    "types": ["vitest/globals", "node"]
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "incremental": true,
+    "declarationMap": true
   },
-  "exclude": ["**/.yarn", "**/node_modules", "**/dist"]
+  "exclude": [
+    "**/.yarn",
+    "**/node_modules",
+    "**/dist",
+    "**/.next",
+    "**/jest.*.js"
+  ],
+  "ts-node": {
+    "compilerOptions": {
+      "module": "commonjs"
+    }
+  }
 }

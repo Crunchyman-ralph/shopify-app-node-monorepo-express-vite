@@ -3,7 +3,7 @@
  */
 const restrictedGlobalList = [
   'global',
-  'window',
+  // 'window', TODO: put it back and find an alternative way to use it
   'localStorage',
   'postMessage',
   'blur',
@@ -16,7 +16,7 @@ const restrictedGlobalList = [
   'top',
   'length',
   'closed',
-  'location',
+  // 'location', TODO: put it back and find an alternative way to use it
   'origin',
   'name',
   'locationbar',
@@ -186,7 +186,7 @@ const restrictedGlobalList = [
 module.exports = {
   jsRules: {
     'array-callback-return': ['error'],
-    'no-await-in-loop': ['error'],
+    'no-await-in-loop': ['off'],
     'no-duplicate-imports': ['error'],
     'no-self-compare': ['error'],
     'no-template-curly-in-string': ['error'],
@@ -207,7 +207,7 @@ module.exports = {
     'no-array-constructor': ['error'],
     'no-bitwise': ['error'],
     'no-caller': ['error'],
-    'no-console': ['error', { allow: ['error', 'warn'] }],
+    'no-console': ['warn', { allow: ['error', 'warn'] }],
     'no-continue': ['error'],
     'no-else-return': ['error'],
     'no-empty-function': ['error', { allow: ['constructors'] }],

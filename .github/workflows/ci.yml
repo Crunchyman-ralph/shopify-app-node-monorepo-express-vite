@@ -1,10 +1,13 @@
 name: Node.js CI
 
 on:
-  push:
-    branches: [main]
   pull_request:
     branches: [main]
+  push:
+    branches: [main]
+
+env:
+  NODE_OPTIONS: --max_old_space_size=6144 # assert node processes to use 6Gb (GA limit = 7Gb)
 
 jobs:
   build:
@@ -21,6 +24,12 @@ jobs:
         uses: actions/setup-node@v2
         with:
           node-version: ${{ matrix.node-version }}
-      - run: yarn install
+      - name: Run Yarn Install
+        run: yarn install
       - run: cp .env.test .env
-      - run: NODE_ENV=test yarn test
+      - name: Run tests
+        run: NODE_ENV=test yarn c:test
+      - name: Run Type
+        run: NODE_ENV=test yarn c:type
+      - name: Run Lint
+        run: NODE_ENV=test yarn c:lint

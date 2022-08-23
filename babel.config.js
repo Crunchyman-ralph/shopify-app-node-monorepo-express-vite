@@ -8,7 +8,7 @@ module.exports = (
 ) => {
   api.cache.using(() => process.env.NODE_ENV);
   return {
-    babelrcRoots: ['packages/*'],
+    babelrcRoots: ['web/*'],
     presets: [
       ['@babel/preset-env', { targets: { node: 'current' } }],
       ['@babel/preset-typescript', { onlyRemoveTypeImports: true }],

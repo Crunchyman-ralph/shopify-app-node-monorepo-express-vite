@@ -8,10 +8,16 @@
   "include": ["*.js", "*.json", "scripts/**/*.js", "config/**/*.js"],
   "references": [
     {
-      "path": "packages/api"
+      "path": "scripts"
     },
     {
-      "path": "packages/web-app"
+      "path": "web/axe-common"
+    },
+    {
+      "path": "web/backend"
+    },
+    {
+      "path": "web/frontend"
     }
   ]
 }

@@ -2,19 +2,10 @@ const { graphqlExtends, graphqlRules } = require('./rules/graphql-rules');
 const { jsRules } = require('./rules/js-rules');
 const { reactExtends, reactRules } = require('./rules/react-rules');
 const { tsExtends, tsRules } = require('./rules/ts-rules');
-
-const prettierRules = {
-  'prettier/prettier': ['error', {}, { usePrettierrc: true }], // Includes .prettierrc.js rules
-};
+const { unicornExtends, unicornRules } = require('./rules/unicorn-rules');
 
 /**
- * Return Eslint config following given options.
- *
- * @param {{
- *   dirname: string;
- *   tsconfigPaths?: string[];
- * }} options
- * @returns Eslint config
+ * @type {import('eslint').Linter.Config}
  */
 module.exports = {
   root: true,
@@ -25,36 +16,37 @@ module.exports = {
   parserOptions: {
     project: [
       './tsconfig?(.eslint).json',
-      './packages/*/tsconfig?(.eslint).json',
+      './web/*/tsconfig?(.eslint).json',
+      './scripts/tsconfig.json',
     ],
     tsconfigRootDir: '.',
-    ecmaVersion: 8, // to enable features such as async/await
+    ecmaVersion: 8, // enable ES6+ features
   },
   extends: ['eslint:recommended'],
   overrides: [
     {
-      files: ['**/*.js'],
+      files: ['**/*.js', '**/*.mjs'],
       parser: '@babel/eslint-parser',
+      parserOptions: {
+        sourceType: 'module',
+      },
       env: {
         browser: false,
         node: true,
-        es6: false,
+        es6: true,
       },
       plugins: ['import'],
-      extends: [
-        'eslint:recommended',
-        'plugin:prettier/recommended', // Prettier plugin
-      ],
-      rules: Object.assign({}, prettierRules, jsRules, {
+      extends: ['eslint:recommended'],
+      rules: Object.assign({}, jsRules, {
         'prefer-object-spread': 'off',
       }),
     },
-    // This configuration will apply only to TypeScript files
+
     {
       files: ['**/*.ts', '**/*.tsx'],
       parser: '@typescript-eslint/parser',
       settings: {
-        react: { version: '18.0.0' },
+        react: { version: '18.2.0' },
         'import/parsers': {
           '@typescript-eslint/parser': ['.ts', '.tsx'],
         },
@@ -71,25 +63,22 @@ module.exports = {
         node: true,
         es6: true,
       },
-      plugins: ['import'],
-      extends: [
-        'eslint:recommended',
-        'plugin:prettier/recommended', // Prettier plugin
-        'plugin:unicorn/recommended',
-      ]
+      plugins: ['import', '@typescript-eslint'],
+      extends: ['eslint:recommended']
         .concat(tsExtends)
-        .concat(reactExtends),
-      rules: Object.assign({}, prettierRules, jsRules, tsRules, reactRules, {
+        .concat(reactExtends)
+        .concat(unicornExtends),
+      rules: Object.assign({}, jsRules, tsRules, reactRules, unicornRules, {
         'unicorn/prevent-abbreviations': 'off',
         'unicorn/prefer-module': 'off',
         'unicorn/numeric-separators-style': 'off',
-        'unicorn/filename-case': ['error', { case: { pascalCase: true } }],
       }),
     },
+
     {
       files: ['**/*.graphql'],
       extends: graphqlExtends,
-      rules: Object.assign({}, prettierRules, graphqlRules, {}),
+      rules: Object.assign({}, graphqlRules, {}),
     },
   ],
 };

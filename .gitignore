@@ -2,7 +2,7 @@
 .env
 
 # Dependency directory
-**/node_modules
+node_modules
 
 # Test coverage directory
 coverage
@@ -17,41 +17,14 @@ logs
 # ngrok tunnel file
 config/tunnel.pid
 
-# compiled output
-**/dist
-dist/*
-/tmp
-/out-tsc
+# vite build output
+dist/
 
-# IDEs and editors
-/.idea
-.project
-.classpath
-.c9/
-*.launch
-.settings/
-*.sublime-workspace
+# extensions build output
+extensions/*/build
 
-# IDE - VSCode
-.vscode/*
-!.vscode/settings.json
-!.vscode/tasks.json
-!.vscode/launch.json
-!.vscode/extensions.json
-
-# misc
-/.sass-cache
-/connect.lock
-/coverage
-/libpeerconnection.log
-npm-debug.log
-yarn-error.log
-testem.log
-/typings
-
-# System Files
-.DS_Store
-Thumbs.db
+# Node library SQLite database
+web/database.sqlite
 
 # Yarn 2+ without zero installs
 .pnp.*
