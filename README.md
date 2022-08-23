@@ -14,18 +14,10 @@ Feel free to collaborate on this project and lets empower the Shopify Dev Commun
 We are using yarn workspaces to segment our projects into multiple packages.
 Packages found in `packages`:
 
-- api
-- frontend
-- _shopify network (coming soon)_
-
-## Running the app
-
-Using the [Shopify CLI](https://github.com/Shopify/shopify-cli) run:
-
-```sh
-cd packages/api
-shopify app serve
-```
+- backend: contains all the code related to the backend of the app (api, database, etc)
+- frontend: contains the dashboard info
+- axe/common: contains cool utils that you can use anywhere in your app
+- _shopify network (coming soon)_ [Will contain all the graphql queries and mutations to interact with the shopify api]
 
 ## Next Steps
 
