@@ -46,7 +46,7 @@ module.exports = {
       files: ['**/*.ts', '**/*.tsx'],
       parser: '@typescript-eslint/parser',
       settings: {
-        react: { version: '17.0.2' },
+        react: { version: '18.2.0' },
         'import/parsers': {
           '@typescript-eslint/parser': ['.ts', '.tsx'],
         },
@@ -63,7 +63,7 @@ module.exports = {
         node: true,
         es6: true,
       },
-      plugins: ['import'],
+      plugins: ['import', '@typescript-eslint'],
       extends: ['eslint:recommended']
         .concat(tsExtends)
         .concat(reactExtends)

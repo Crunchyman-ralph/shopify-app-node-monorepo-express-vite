@@ -15,7 +15,7 @@
     "@shopify/app-bridge": "^3.2.2",
     "@shopify/app-bridge-react": "^3.2.2",
     "@shopify/app-bridge-utils": "^3.2.2",
-    "@shopify/polaris": "^9.24.0",
+    "@shopify/polaris": "^10.0.0",
     "@vitejs/plugin-react": "2.0.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
@@ -26,7 +26,7 @@
   "devDependencies": {
     "history": "^5.3.0",
     "jsdom": "^20.0.0",
-    "prettier": "^2.6.0",
-    "vi-fetch": "^0.6.1"
+    "prettier": "^2.7.1",
+    "vi-fetch": "^0.8.0"
   }
 }
