@@ -7,6 +7,7 @@ import {
   LATEST_API_VERSION,
   SessionInterface,
 } from '@shopify/shopify-api';
+import { LoadEnvs } from '@axe/common';
 
 import applyAuthMiddleware from './middleware/auth';
 import verifyRequest from './middleware/verify-request';
@@ -23,11 +24,20 @@ const PORT = Number.parseInt(
   10
 );
 
+LoadEnvs.loadEnvs();
+
 // TODO: There should be provided by env vars
 const DEV_INDEX_PATH = `${process.cwd()}/../frontend/`;
 const PROD_INDEX_PATH = `${process.cwd()}/frontend/dist/`;
 
-const DB_PATH = `${process.cwd()}/database.sqlite`;
+const DB_PATH = process.env.MONGODB_URI as unknown as URL | undefined;
+const DB_NAME = process.env.MONGODB_NAME;
+
+if (!DB_PATH || !DB_NAME) {
+  throw new Error(
+    'MONGODB_URI and MONGODB_NAME must be provided, check your .env'
+  );
+}
 
 Shopify.Context.initialize({
   API_KEY: process.env.SHOPIFY_API_KEY!,
@@ -38,7 +48,7 @@ Shopify.Context.initialize({
   API_VERSION: LATEST_API_VERSION,
   IS_EMBEDDED_APP: true,
   // This should be replaced with your preferred storage strategy
-  SESSION_STORAGE: new Shopify.Session.SQLiteSessionStorage(DB_PATH),
+  SESSION_STORAGE: new Shopify.Session.MongoDBSessionStorage(DB_PATH, DB_NAME),
 });
 
 Shopify.Webhooks.Registry.addHandler('APP_UNINSTALLED', {
