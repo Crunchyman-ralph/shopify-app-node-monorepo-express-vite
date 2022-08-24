@@ -1,36 +1,117 @@
+# Inspiration https://github.com/Chnapy/bloup/blob/master/.github/workflows/ci-cd.yml
 name: Node.js CI
 
 on:
   pull_request:
-    branches: [main]
-  push:
     branches: [main]
 
 env:
   NODE_OPTIONS: --max_old_space_size=6144 # assert node processes to use 6Gb (GA limit = 7Gb)
 
 jobs:
-  build:
+  prepare-cache:
+    name: Prepare cache
     runs-on: ubuntu-latest
 
-    strategy:
-      matrix:
-        node-version: [16, 'lts/*']
-
     steps:
-      - uses: actions/checkout@v2
-      - uses: c-hive/gha-yarn-cache@v2
-      - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v2
+      - uses: actions/checkout@v3
+
+      - uses: actions/setup-node@v3
         with:
-          node-version: ${{ matrix.node-version }}
-      - name: Run Yarn Install
-        run: yarn install
-      # TODO: put it back when we need it
-      # - run: cp .env.test .env
-      - name: Run tests
-        run: NODE_ENV=test yarn c:test
-      - name: Run Type
-        run: NODE_ENV=test yarn c:type
-      - name: Run Lint
-        run: NODE_ENV=test yarn c:lint
+          node-version-file: '.nvmrc'
+
+      - name: Cache node modules
+        id: cache-yarn
+        uses: actions/cache@v3
+        env:
+          cache-name: cache-node-modules
+        with:
+          # npm cache files are stored in `~/.npm` on Linux/macOS
+          path: ./node_modules
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+
+      - name: Install dependencies
+        if: steps.cache-yarn.outputs.cache-hit != 'true'
+        run: |
+          yarn dedupe --check
+
+      - name: Check or update Yarn cache
+        run: yarn install --immutable
+
+  check-lint:
+    name: Check - Lint
+    needs: prepare-cache
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v3
+
+      - uses: actions/setup-node@v3
+        with:
+          node-version-file: '.nvmrc'
+
+      - name: Cache node modules
+        id: cache-yarn
+        uses: actions/cache@v3
+        env:
+          cache-name: cache-node-modules
+        with:
+          # npm cache files are stored in `~/.npm` on Linux/macOS
+          path: ./node_modules
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+
+      - name: Check - Lint
+        timeout-minutes: 10
+        run: yarn c:lint
+
+  check-prettier:
+    name: Check - Prettier
+    needs: prepare-cache
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v3
+
+      - uses: actions/setup-node@v3
+        with:
+          node-version-file: '.nvmrc'
+
+      - name: Cache node modules
+        id: cache-yarn
+        uses: actions/cache@v3
+        env:
+          cache-name: cache-node-modules
+        with:
+          # npm cache files are stored in `~/.npm` on Linux/macOS
+          path: ./node_modules
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+
+      - name: Check - Prettier
+        timeout-minutes: 10
+        run: yarn c:format
+
+  check-type:
+    name: Check - Type
+    needs: prepare-cache
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v3
+
+      - uses: actions/setup-node@v3
+        with:
+          node-version-file: '.nvmrc'
+
+      - name: Cache node modules
+        id: cache-yarn
+        uses: actions/cache@v3
+        env:
+          cache-name: cache-node-modules
+        with:
+          # npm cache files are stored in `~/.npm` on Linux/macOS
+          path: ./node_modules
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+
+      - name: Check - Prettier
+        timeout-minutes: 10
+        run: yarn c:type
