@@ -1,3 +1,5 @@
 /.yarn/releases/** binary
 /.yarn/plugins/** binary
 /.yarn/unplugged/** binary
+
+* text=auto eol=lf
