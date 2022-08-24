@@ -30,7 +30,7 @@ LoadEnvs.loadEnvs();
 const DEV_INDEX_PATH = `${process.cwd()}/../frontend/`;
 const PROD_INDEX_PATH = `${process.cwd()}/frontend/dist/`;
 
-const DB_PATH = process.env.MONGODB_URI as unknown as URL;
+const DB_PATH = process.env.MONGODB_URI as unknown as URL | undefined;
 const DB_NAME = process.env.MONGODB_NAME;
 
 if (!DB_PATH || !DB_NAME) {
