@@ -1,4 +1,3 @@
-# Inspiration https://github.com/Chnapy/bloup/blob/master/.github/workflows/ci-cd.yml
 name: Node.js CI
 
 on:
