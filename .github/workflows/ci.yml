@@ -26,7 +26,8 @@ jobs:
           node-version: ${{ matrix.node-version }}
       - name: Run Yarn Install
         run: yarn install
-      - run: cp .env.test .env
+      # TODO: put it back when we need it
+      # - run: cp .env.test .env
       - name: Run tests
         run: NODE_ENV=test yarn c:test
       - name: Run Type
