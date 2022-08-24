@@ -56,7 +56,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@axe/common@0.1.0, @axe/common@workspace:web/axe-common":
+"@axe/common@workspace:*, @axe/common@workspace:web/axe-common":
   version: 0.0.0-use.local
   resolution: "@axe/common@workspace:web/axe-common"
   dependencies:
@@ -9972,7 +9972,7 @@ __metadata:
   resolution: "my-node-app@workspace:."
   dependencies:
     "@apollo/client": 3.6.9
-    "@axe/common": 0.1.0
+    "@axe/common": "workspace:*"
     "@babel/core": 7.18.13
     "@babel/eslint-parser": 7.18.9
     "@babel/preset-env": 7.18.10
