@@ -9,7 +9,7 @@
     "dotenv": "16.0.1"
   },
   "devDependencies": {
-    "@types/jest": "28.1.7",
+    "@types/jest": "28.1.8",
     "@types/node": "18.7.11",
     "dotenv": "16.0.1",
     "jest": "28.1.3",
