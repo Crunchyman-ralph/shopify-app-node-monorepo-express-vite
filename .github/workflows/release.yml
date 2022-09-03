@@ -24,5 +24,4 @@ jobs:
       - name: Create new release
         uses: softprops/action-gh-release@v1
         with:
-          tag_name: ${{ steps.publish.outputs.version }}
           generate_release_notes: true
