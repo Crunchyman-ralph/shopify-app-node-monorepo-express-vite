@@ -1664,14 +1664,7 @@
   dependencies:
     "@shopify/app-bridge" "^3.2.2"
 
-"@shopify/app-bridge@3.2.2":
-  version "3.2.2"
-  resolved "https://registry.yarnpkg.com/@shopify/app-bridge/-/app-bridge-3.2.2.tgz#745f875be35f92e3aab9114719d0bc859bfc7673"
-  dependencies:
-    base64url "^3.0.1"
-    web-vitals "^2.1.4"
-
-"@shopify/app-bridge@^3.2.2", "@shopify/app-bridge@^3.2.5":
+"@shopify/app-bridge@3.2.5", "@shopify/app-bridge@^3.2.2", "@shopify/app-bridge@^3.2.5":
   version "3.2.5"
   resolved "https://registry.yarnpkg.com/@shopify/app-bridge/-/app-bridge-3.2.5.tgz#717e3591cddc29107a9a5133ebc4b78296eafd55"
   dependencies:
