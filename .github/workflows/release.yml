@@ -9,13 +9,21 @@ jobs:
   release:
     name: Release
     runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    permissions:
+      contents: write
+
     steps:
-      - uses: actions/checkout@master
+      - uses: actions/checkout@v3
+
       - uses: actions/setup-node@v3
         with:
           node-version-file: '.nvmrc'
+
       - name: Build
         run: yarn build
+
       - run: npx semantic-release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
