@@ -9,7 +9,7 @@
   },
   "dependencies": {
     "@shopify/app-bridge": "3.2.2",
-    "@shopify/app-bridge-react": "3.2.2",
+    "@shopify/app-bridge-react": "3.2.5",
     "@shopify/app-bridge-utils": "3.2.2",
     "@shopify/polaris": "10.1.1",
     "@vitejs/plugin-react": "2.0.1",
