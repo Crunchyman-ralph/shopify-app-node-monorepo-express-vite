@@ -111,6 +111,6 @@ jobs:
           path: ./node_modules
           key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
 
-      - name: Check - Prettier
+      - name: Check - Type
         timeout-minutes: 10
         run: yarn c:type
