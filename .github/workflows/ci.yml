@@ -2,7 +2,7 @@ name: Node.js CI
 
 on:
   pull_request:
-    branches: [main]
+    branches: [master]
 
 env:
   NODE_OPTIONS: --max_old_space_size=6144 # assert node processes to use 6Gb (GA limit = 7Gb)
