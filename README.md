@@ -32,6 +32,7 @@ Packages found in `packages`:
 ## Next Steps
 
 - [ ] Add Typeorm ORM to the project with MongoDB (or maybe mongoose and lets forget typeORM?)
+- [ ] Add translations (for multiple languages)
 - [x] Implement Subscriptions (handling charging customers etc...)
 - [ ] open to suggestions/more ideas!
 
