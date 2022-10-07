@@ -2,7 +2,7 @@
   "name": "ralphs-shopify-app-template-node",
   "version": "0.0.0-development",
   "private": true,
-  "packageManager": "yarn@3.2.2",
+  "packageManager": "yarn@3.2.3",
   "license": "UNLICENSED",
   "workspaces": [
     "web/*"
