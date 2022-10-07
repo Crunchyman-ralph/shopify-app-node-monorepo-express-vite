@@ -12,7 +12,7 @@
     "@shopify/app-bridge-react": "3.2.5",
     "@shopify/app-bridge-utils": "3.2.5",
     "@shopify/polaris": "10.1.1",
-    "@vitejs/plugin-react": "2.0.1",
+    "@vitejs/plugin-react": "2.1.0",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-query": "3.39.2",
