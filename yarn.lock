@@ -3131,26 +3131,26 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@shopify/polaris-icons@npm:^6.0.0":
+"@shopify/polaris-icons@npm:^6.4.0":
   version: 6.4.0
   resolution: "@shopify/polaris-icons@npm:6.4.0"
   checksum: 18f53f4161d63249adeeb1a3c72f24631f048c4a2bf68e59e042b22c005d81cc445f513f6291e7b3b485ecbd9f5a84b0c298ce59f6f84ed7b0476f2efa2762c8
   languageName: node
   linkType: hard
 
-"@shopify/polaris-tokens@npm:^6.0.0":
+"@shopify/polaris-tokens@npm:^6.2.0":
   version: 6.2.0
   resolution: "@shopify/polaris-tokens@npm:6.2.0"
   checksum: 5126b5e0b97a7bfe4bd6aa0939ebd165f364cfbad644b9c70d71286cf4258dd97152ac58aa3fb110dbf8df327f2e05f3626f2b502548b152ac2c34e1697a1fb6
   languageName: node
   linkType: hard
 
-"@shopify/polaris@npm:10.1.1":
-  version: 10.1.1
-  resolution: "@shopify/polaris@npm:10.1.1"
+"@shopify/polaris@npm:10.6.0":
+  version: 10.6.0
+  resolution: "@shopify/polaris@npm:10.6.0"
   dependencies:
-    "@shopify/polaris-icons": ^6.0.0
-    "@shopify/polaris-tokens": ^6.0.0
+    "@shopify/polaris-icons": ^6.4.0
+    "@shopify/polaris-tokens": ^6.2.0
     "@types/react": "*"
     "@types/react-dom": "*"
     "@types/react-transition-group": ^4.4.2
@@ -3159,7 +3159,7 @@ __metadata:
   peerDependencies:
     react: ^16.14.0 || ^17.0.0
     react-dom: ^16.14.0 || ^17.0.0
-  checksum: dbcce93df2aead9ec69052d8f45fb1231a8879747980b9f10f1908978d801f0f4d22e6bcbc62798b2c499815f128f74afed7a2eb08bd4b23b8904065d3764984
+  checksum: 79c5e69a2cd9b621ebcc448c47ea07f6e2390f598a09c4c8b252a2ce97255eb65cd466e3fffcab2e535aea41e1d16c778275b803edc02a31ebd7b21d347b01fd
   languageName: node
   linkType: hard
 
@@ -7967,7 +7967,7 @@ __metadata:
     "@shopify/app-bridge": 3.2.5
     "@shopify/app-bridge-react": 3.2.5
     "@shopify/app-bridge-utils": 3.2.5
-    "@shopify/polaris": 10.1.1
+    "@shopify/polaris": 10.6.0
     "@vitejs/plugin-react": 2.1.0
     history: 5.3.0
     jsdom: 20.0.0
@@ -13255,7 +13255,7 @@ __metadata:
     "@shopify/app-bridge-react": 3.2.5
     "@shopify/app-bridge-utils": 3.2.5
     "@shopify/cli": 3.16.3
-    "@shopify/polaris": 10.1.1
+    "@shopify/polaris": 10.6.0
     "@shopify/shopify-api": 5.0.1
     "@types/eslint": 8.4.6
     "@types/glob": 8.0.0
