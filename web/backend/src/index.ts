@@ -198,7 +198,7 @@ export const createServer = async (
 
     const appInstalled = await AppInstallations.includes(shop);
 
-    if (!appInstalled) {
+    if (!appInstalled && !/^\/exitiframe/i.test(req.originalUrl)) {
       return redirectToAuth(req, res, app);
     }
 
