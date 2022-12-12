@@ -8,7 +8,7 @@
     "dev": "vite"
   },
   "dependencies": {
-    "@shopify/app-bridge": "3.2.5",
+    "@shopify/app-bridge": "3.5.0",
     "@shopify/app-bridge-react": "3.2.5",
     "@shopify/app-bridge-utils": "3.2.5",
     "@shopify/polaris": "10.6.0",
