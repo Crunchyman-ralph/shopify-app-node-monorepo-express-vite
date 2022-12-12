@@ -2963,12 +2963,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@shopify/app-bridge-utils@npm:3.2.5":
-  version: 3.2.5
-  resolution: "@shopify/app-bridge-utils@npm:3.2.5"
+"@shopify/app-bridge-utils@npm:3.5.0":
+  version: 3.5.0
+  resolution: "@shopify/app-bridge-utils@npm:3.5.0"
   dependencies:
-    "@shopify/app-bridge": ^3.2.5
-  checksum: 18f80c775c30679ba2069d0a99917bbfa91f2bae407f20a3e7148a94e38323f3747c731f57ac087277c9384579d3341b7f5602768847ff69bf909ce744bac3ac
+    "@shopify/app-bridge": ^3.5.0
+  checksum: d49ffa2c3578671a11efa773a267e032834d620fb385d9727608bfbf060ba23c694ce512ef15038d9596d425cdd96a6fce926795bd3c2d7d9b6ab781fcce503f
   languageName: node
   linkType: hard
 
@@ -2989,6 +2989,16 @@ __metadata:
     base64url: ^3.0.1
     web-vitals: ^3.0.1
   checksum: b22f87fc033a08e10b8ee5c2831108bfcf7114451bace59d175d972076fbeb370df852d9b9fe9501328d120a845dab17ac3e2155d20ba38b3e9b785acf0c13a4
+  languageName: node
+  linkType: hard
+
+"@shopify/app-bridge@npm:^3.5.0":
+  version: 3.5.0
+  resolution: "@shopify/app-bridge@npm:3.5.0"
+  dependencies:
+    base64url: ^3.0.1
+    web-vitals: ^3.0.1
+  checksum: 8c5d2b8e3bb72e3ba613d119460be7ab233f65f16b6ce1b7929ba8c54c38df161b8bac5e0236fae14d40e502a9f4d94a64713fd19c4a87258563eb12dc42351b
   languageName: node
   linkType: hard
 
@@ -7966,7 +7976,7 @@ __metadata:
   dependencies:
     "@shopify/app-bridge": 3.2.5
     "@shopify/app-bridge-react": 3.2.5
-    "@shopify/app-bridge-utils": 3.2.5
+    "@shopify/app-bridge-utils": 3.5.0
     "@shopify/polaris": 10.6.0
     "@vitejs/plugin-react": 2.1.0
     history: 5.3.0
@@ -13253,7 +13263,7 @@ __metadata:
     "@shopify/app": 3.16.3
     "@shopify/app-bridge": 3.2.5
     "@shopify/app-bridge-react": 3.2.5
-    "@shopify/app-bridge-utils": 3.2.5
+    "@shopify/app-bridge-utils": 3.5.0
     "@shopify/cli": 3.16.3
     "@shopify/polaris": 10.6.0
     "@shopify/shopify-api": 5.0.1
