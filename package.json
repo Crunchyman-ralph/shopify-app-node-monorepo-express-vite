@@ -40,7 +40,7 @@
     "@shopify/app-bridge-utils": "3.2.5",
     "@shopify/cli": "3.16.3",
     "@shopify/polaris": "10.6.0",
-    "@shopify/shopify-api": "5.0.1",
+    "@shopify/shopify-api": "6.0.2",
     "@vitejs/plugin-react": "2.1.0",
     "compression": "1.7.4",
     "cookie-parser": "1.4.6",
