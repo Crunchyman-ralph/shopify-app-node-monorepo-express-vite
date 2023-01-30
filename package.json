@@ -36,7 +36,7 @@
     "@apollo/client": "3.6.9",
     "@shopify/app": "3.16.3",
     "@shopify/app-bridge": "3.2.5",
-    "@shopify/app-bridge-react": "3.2.5",
+    "@shopify/app-bridge-react": "3.7.2",
     "@shopify/app-bridge-utils": "3.2.5",
     "@shopify/cli": "3.16.3",
     "@shopify/polaris": "10.6.0",
