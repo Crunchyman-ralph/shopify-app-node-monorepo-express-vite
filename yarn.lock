@@ -2952,14 +2952,21 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@shopify/app-bridge-react@npm:3.2.5":
-  version: 3.2.5
-  resolution: "@shopify/app-bridge-react@npm:3.2.5"
+"@shopify/app-bridge-core@npm:^1.0.0":
+  version: 1.0.0
+  resolution: "@shopify/app-bridge-core@npm:1.0.0"
+  checksum: 86d90a61e3633e0797fbaba236f0fdc892a45b02413e04e5057300c24ac842ee4b74643cc029a86f3ab978467e3b6a5e9a98659b9f7c736dabaf5d083324da8d
+  languageName: node
+  linkType: hard
+
+"@shopify/app-bridge-react@npm:3.7.3":
+  version: 3.7.3
+  resolution: "@shopify/app-bridge-react@npm:3.7.3"
   dependencies:
-    "@shopify/app-bridge": ^3.2.5
+    "@shopify/app-bridge": ^3.7.3
   peerDependencies:
     react: ^16.0.0 || ^17.0.0 || ^18.0.0
-  checksum: 33ada5477fa975a623f301fd66a68e9f23cdd48fe997957a2d4fe83200714b921c1f812e543d8f6a8e48887124de58a1f09f2a0f47ca85ba0a7e77fc1d9cb9be
+  checksum: 1167cb235d24fb8896b016ba6ecfeb8cca3e485ae83ac69796bfad8c4b0be6eea5c3837d11ec7f40f4f450220f6df577178ec17a4b36422a5638d69e8bcc8d6a
   languageName: node
   linkType: hard
 
@@ -2989,6 +2996,17 @@ __metadata:
     base64url: ^3.0.1
     web-vitals: ^3.0.1
   checksum: b22f87fc033a08e10b8ee5c2831108bfcf7114451bace59d175d972076fbeb370df852d9b9fe9501328d120a845dab17ac3e2155d20ba38b3e9b785acf0c13a4
+  languageName: node
+  linkType: hard
+
+"@shopify/app-bridge@npm:^3.7.3":
+  version: 3.7.3
+  resolution: "@shopify/app-bridge@npm:3.7.3"
+  dependencies:
+    "@shopify/app-bridge-core": ^1.0.0
+    base64url: ^3.0.1
+    web-vitals: ^3.0.1
+  checksum: 603c841ddcbf2af97c405680ed605e0e1e363926f58e7744a75a713da586ddd8d1f4455d91d4c0394b5435cb43c3bfb1a8652857bfffe0457cf14414135f7056
   languageName: node
   linkType: hard
 
@@ -7965,7 +7983,7 @@ __metadata:
   resolution: "frontend@workspace:web/frontend"
   dependencies:
     "@shopify/app-bridge": 3.2.5
-    "@shopify/app-bridge-react": 3.2.5
+    "@shopify/app-bridge-react": 3.7.3
     "@shopify/app-bridge-utils": 3.2.5
     "@shopify/polaris": 10.6.0
     "@vitejs/plugin-react": 2.1.0
@@ -13252,7 +13270,7 @@ __metadata:
     "@graphql-eslint/eslint-plugin": 3.10.7
     "@shopify/app": 3.16.3
     "@shopify/app-bridge": 3.2.5
-    "@shopify/app-bridge-react": 3.2.5
+    "@shopify/app-bridge-react": 3.7.3
     "@shopify/app-bridge-utils": 3.2.5
     "@shopify/cli": 3.16.3
     "@shopify/polaris": 10.6.0
