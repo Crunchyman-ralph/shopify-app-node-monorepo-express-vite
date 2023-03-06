@@ -2952,6 +2952,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@shopify/app-bridge-core@npm:^1.0.0":
+  version: 1.0.0
+  resolution: "@shopify/app-bridge-core@npm:1.0.0"
+  checksum: 86d90a61e3633e0797fbaba236f0fdc892a45b02413e04e5057300c24ac842ee4b74643cc029a86f3ab978467e3b6a5e9a98659b9f7c736dabaf5d083324da8d
+  languageName: node
+  linkType: hard
+
 "@shopify/app-bridge-react@npm:3.2.5":
   version: 3.2.5
   resolution: "@shopify/app-bridge-react@npm:3.2.5"
@@ -2972,13 +2979,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@shopify/app-bridge@npm:3.2.5":
-  version: 3.2.5
-  resolution: "@shopify/app-bridge@npm:3.2.5"
+"@shopify/app-bridge@npm:3.7.3":
+  version: 3.7.3
+  resolution: "@shopify/app-bridge@npm:3.7.3"
   dependencies:
+    "@shopify/app-bridge-core": ^1.0.0
     base64url: ^3.0.1
-    web-vitals: ^2.1.4
-  checksum: d946ea043f546e21d5edc52c3ef64504f2193cfe0c5d7fdeb916532d53c00642f15b60c6943b28ca43d7d73bedebcffaf6f264d93d41dabc8f030e5aa8bbaa4a
+    web-vitals: ^3.0.1
+  checksum: 603c841ddcbf2af97c405680ed605e0e1e363926f58e7744a75a713da586ddd8d1f4455d91d4c0394b5435cb43c3bfb1a8652857bfffe0457cf14414135f7056
   languageName: node
   linkType: hard
 
@@ -7964,7 +7972,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "frontend@workspace:web/frontend"
   dependencies:
-    "@shopify/app-bridge": 3.2.5
+    "@shopify/app-bridge": 3.7.3
     "@shopify/app-bridge-react": 3.2.5
     "@shopify/app-bridge-utils": 3.2.5
     "@shopify/polaris": 10.6.0
@@ -13251,7 +13259,7 @@ __metadata:
     "@babel/preset-typescript": 7.18.6
     "@graphql-eslint/eslint-plugin": 3.10.7
     "@shopify/app": 3.16.3
-    "@shopify/app-bridge": 3.2.5
+    "@shopify/app-bridge": 3.7.3
     "@shopify/app-bridge-react": 3.2.5
     "@shopify/app-bridge-utils": 3.2.5
     "@shopify/cli": 3.16.3
@@ -15997,13 +16005,6 @@ __metadata:
   version: 3.2.1
   resolution: "web-streams-polyfill@npm:3.2.1"
   checksum: b119c78574b6d65935e35098c2afdcd752b84268e18746606af149e3c424e15621b6f1ff0b42b2676dc012fc4f0d313f964b41a4b5031e525faa03997457da02
-  languageName: node
-  linkType: hard
-
-"web-vitals@npm:^2.1.4":
-  version: 2.1.4
-  resolution: "web-vitals@npm:2.1.4"
-  checksum: 03d3f47dbf55c3dce07beb0ff5de8ddd52e2d0a53a8df5c84e7a16dda93543341d67231fa79b1d9772b091419af4ec0fd395b8bcf451a0e26846e3f76b3d0efc
   languageName: node
   linkType: hard
 
