@@ -33,7 +33,7 @@
     "semantic-release": "semantic-release"
   },
   "dependencies": {
-    "@apollo/client": "3.6.9",
+    "@apollo/client": "3.12.7",
     "@shopify/app": "3.16.3",
     "@shopify/app-bridge": "3.7.3",
     "@shopify/app-bridge-react": "3.2.5",
