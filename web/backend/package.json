@@ -9,7 +9,7 @@
     "serve": "cross-env NODE_ENV=production ts-node src/index.ts"
   },
   "dependencies": {
-    "@shopify/shopify-api": "6.2.0",
+    "@shopify/shopify-api": "11.8.0",
     "compression": "1.7.4",
     "cookie-parser": "1.4.6",
     "cross-env": "7.0.3",
