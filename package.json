@@ -38,7 +38,7 @@
     "@shopify/app-bridge": "3.7.3",
     "@shopify/app-bridge-react": "3.2.5",
     "@shopify/app-bridge-utils": "3.2.5",
-    "@shopify/cli": "3.16.3",
+    "@shopify/cli": "3.74.1",
     "@shopify/polaris": "10.6.0",
     "@shopify/shopify-api": "6.2.0",
     "@vitejs/plugin-react": "2.1.0",
